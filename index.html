@@ -369,11 +369,51 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        min-height: 100px
+        min-height: 100px;
+        text-decoration: none;
+        color: inherit
       }
 
       .client-card:hover {
         background: var(--white)
+      }
+
+      .client-logo {
+        max-width: 130px;
+        max-height: 52px;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        margin-bottom: 10px;
+        filter: grayscale(100%);
+        opacity: 0.55;
+        transition: filter 0.3s, opacity 0.3s
+      }
+
+      .client-card:hover .client-logo {
+        filter: grayscale(0%);
+        opacity: 1
+      }
+
+      .client-logo--boost {
+        max-width: 150px;
+        max-height: 60px;
+        filter: grayscale(100%) brightness(0.5) contrast(2) drop-shadow(0 0 1px rgba(59,47,42,0.6));
+        opacity: 0.9
+      }
+
+      .client-card:hover .client-logo--boost {
+        filter: grayscale(0%) brightness(1) contrast(1);
+        opacity: 1
+      }
+
+      .client-logo--darker {
+        filter: grayscale(100%) brightness(0.85);
+      }
+
+      .client-card:hover .client-logo--darker {
+        filter: grayscale(0%) brightness(1);
+        opacity: 1
       }
 
       .client-name {
@@ -783,6 +823,54 @@
         .testimonials-grid {
           grid-template-columns: 1fr
         }
+
+        .mobile-nav {
+          display: flex
+        }
+      }
+
+      .mobile-nav {
+        display: none;
+        position: sticky;
+        top: 64px;
+        z-index: 90;
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--sand);
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none
+      }
+
+      .mobile-nav::-webkit-scrollbar {
+        display: none
+      }
+
+      .mobile-nav-inner {
+        display: flex;
+        gap: 0;
+        padding: 0 20px;
+        white-space: nowrap
+      }
+
+      .mobile-nav-inner a {
+        display: inline-block;
+        padding: 14px 16px;
+        font-family: 'Inter', sans-serif;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--cocoa);
+        text-decoration: none;
+        opacity: 0.6;
+        transition: opacity 0.2s, color 0.2s;
+        flex-shrink: 0
+      }
+
+      .mobile-nav-inner a:active {
+        opacity: 1;
+        color: var(--peach)
       }
 
       /* GALLERY */
@@ -931,6 +1019,16 @@
         <a href="#contact" class="btn-ghost">Get in touch</a>
       </div>
     </section>
+    <!-- MOBILE NAV -->
+    <nav class="mobile-nav" aria-label="Quick navigation">
+      <div class="mobile-nav-inner">
+        <a href="#services">Services</a>
+        <a href="#clients">Clients</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
     <!-- SERVICES -->
     <section id="services">
       <div class="container">
@@ -1021,46 +1119,46 @@
         <h2 class="section-title">Clients.</h2>
         <p class="section-intro">From global law firms to in-house teams and the businesses that serve them - the common thread is legal.</p>
         <div class="clients-grid">
-          <div class="client-card">
-            <span class="client-name">Legal CVs &amp; Interview Coaching</span>
+          <a class="client-card" href="https://legalcvs.co.uk/" target="_blank" rel="noopener noreferrer">
+            <img class="client-logo" src="logo-legalcvs.png" alt="Legal CVs &amp; Interview Coaching">
             <span class="client-type">Coaching</span>
-          </div>
-          <div class="client-card">
-            <span class="client-name">Legalencia</span>
+          </a>
+          <a class="client-card" href="https://www.legalencia.com/" target="_blank" rel="noopener noreferrer">
+            <img class="client-logo client-logo--darker" src="logo-legalencia.png" alt="Legalencia">
             <span class="client-type">Legal Consultancy</span>
-          </div>
-          <div class="client-card">
-            <span class="client-name">RightNow Support</span>
+          </a>
+          <a class="client-card" href="https://rightnowsupport.co.uk/" target="_blank" rel="noopener noreferrer">
+            <img class="client-logo" src="logo-rightnow.png" alt="RightNow Support">
             <span class="client-type">Legal Services</span>
-          </div>
-          <div class="client-card">
-            <span class="client-name">Arbor Law</span>
+          </a>
+          <a class="client-card" href="https://arbor.law/" target="_blank" rel="noopener noreferrer">
+            <img class="client-logo" src="logo-arbor.png" alt="Arbor Law">
             <span class="client-type">Law Firm</span>
-          </div>
-          <div class="client-card">
-            <span class="client-name">Lennon Legal</span>
+          </a>
+          <a class="client-card" href="https://lennonlegal.com/" target="_blank" rel="noopener noreferrer">
+            <img class="client-logo client-logo--boost" src="Lennon Legal logo.png" alt="Lennon Legal">
             <span class="client-type">Law Firm</span>
-          </div>
-          <div class="client-card">
-            <span class="client-name">The Lawyers Retreat</span>
+          </a>
+          <a class="client-card" href="https://thelawyersretreat.com/" target="_blank" rel="noopener noreferrer">
+            <img class="client-logo" src="TheLawyersRetreat.png" alt="The Lawyers Retreat">
             <span class="client-type">Community</span>
-          </div>
-          <div class="client-card">
-            <span class="client-name">Aries Practice Management</span>
+          </a>
+          <a class="client-card" href="https://arieslpm.com/" target="_blank" rel="noopener noreferrer">
+            <img class="client-logo" src="logo-aries.png" alt="Aries Legal Practice Management">
             <span class="client-type">Legal Operations</span>
-          </div>
-          <div class="client-card">
-            <span class="client-name">The Legal Heart</span>
+          </a>
+          <a class="client-card" href="https://thelegalheart.com/" target="_blank" rel="noopener noreferrer">
+            <img class="client-logo" src="logo-legalheart.png" alt="The Legal Heart">
             <span class="client-type">Community</span>
-          </div>
-          <div class="client-card">
-            <span class="client-name">Binderr</span>
+          </a>
+          <a class="client-card" href="https://binderr.com/" target="_blank" rel="noopener noreferrer">
+            <img class="client-logo" src="logo-binderr.svg" alt="Binderr">
             <span class="client-type">Legal Tech</span>
-          </div>
-          <div class="client-card">
-            <span class="client-name">Tacit Legal</span>
+          </a>
+          <a class="client-card" href="https://tacit.legal/" target="_blank" rel="noopener noreferrer">
+            <img class="client-logo" src="logo-tacit.svg" alt="Tacit Legal">
             <span class="client-type">Law Firm</span>
-          </div>
+          </a>
         </div>
       </div>
     </section>
