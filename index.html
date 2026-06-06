@@ -615,6 +615,60 @@
         padding: 4px 12px
       }
 
+      .notify-form {
+        display: flex;
+        gap: 0;
+        max-width: 480px
+      }
+
+      .notify-form input[type="email"] {
+        flex: 1;
+        padding: 14px 18px;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        color: var(--cocoa);
+        background: var(--white);
+        border: 1.5px solid var(--peach);
+        border-right: none;
+        outline: none;
+        appearance: none
+      }
+
+      .notify-form input[type="email"]::placeholder {
+        color: var(--cocoa);
+        opacity: 0.4
+      }
+
+      .notify-form input[type="email"]:focus {
+        border-color: var(--cocoa)
+      }
+
+      .notify-form button[type="submit"] {
+        padding: 14px 24px;
+        font-family: 'Inter', sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--white);
+        background: var(--peach);
+        border: 1.5px solid var(--peach);
+        cursor: pointer;
+        white-space: nowrap;
+        transition: background 0.2s, border-color 0.2s
+      }
+
+      .notify-form button[type="submit"]:hover {
+        background: var(--cocoa);
+        border-color: var(--cocoa)
+      }
+
+      @media (max-width: 500px) {
+        .notify-form { flex-direction: column }
+        .notify-form input[type="email"] { border-right: 1.5px solid var(--peach); border-bottom: none }
+        .notify-form input[type="email"]:focus { border-color: var(--cocoa) }
+      }
+
       /* CONTACT */
       #contact {
         background: var(--white);
@@ -1006,7 +1060,7 @@
         <p class="section-intro">Merch that means something. For people who get things done.</p>
         <div class="merch-grid">
           <div class="merch-card">
-            <img class="merch-img" src="https://i.imgur.com/placeholder-cap.jpg" onerror="this.style.background='#F4A888';this.style.display='block';this.alt=''" style="background:var(--peach-soft);min-height:220px" alt="Peach please cap — SJ DOES branded baseball cap in peach with embroidered text">
+            <img class="merch-img" src="SJDOESCAP.png" alt="Peach please cap — SJ DOES branded baseball cap in peach with embroidered text">
             <div class="merch-body">
               <p class="merch-name">Peach, please! Cap</p>
               <p class="merch-detail">Peach · Embroidered · SJ DOES</p>
@@ -1014,7 +1068,7 @@
             </div>
           </div>
           <div class="merch-card">
-            <img class="merch-img" src="https://i.imgur.com/placeholder-tote.jpg" onerror="this.style.background='#FFDCCB';this.style.display='block';this.alt=''" style="background:var(--peach-soft);min-height:220px" alt="SJ DOES Everything tote bag in peach with embroidered text">
+            <img class="merch-img" src="SJDOESBAG.png" alt="SJ DOES Everything tote bag in peach with embroidered text">
             <div class="merch-body">
               <p class="merch-name">Everything Tote</p>
               <p class="merch-detail">Peach · Embroidered · SJ DOES Everything</p>
@@ -1022,7 +1076,13 @@
             </div>
           </div>
         </div>
-        <a href="#contact" class="btn-primary">Notify me when the shop is live</a>
+        <p style="font-family:'Inter',sans-serif;font-size:13px;color:var(--cocoa);opacity:0.6;margin-bottom:14px;letter-spacing:0.04em;text-transform:uppercase">Notify me when the shop is live</p>
+        <form class="notify-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <input type="hidden" name="_next" value="https://sjdoes.com/#shop">
+          <input type="hidden" name="_subject" value="New shop notification signup">
+          <input type="email" name="email" placeholder="your@email.com" required>
+          <button type="submit">Notify me</button>
+        </form>
       </div>
     </section>
     <!-- CONTACT -->
@@ -1032,7 +1092,7 @@
         <h2 class="contact-title">Let's talk.</h2>
         <p class="contact-sub">Whether you need strategy, a LinkedIntervention, help navigating legal tech, or just want to know if SJ can help — reach out.</p>
         <div class="contact-links">
-          <a href="mailto:hello@sjdoes.com" class="btn-primary">hello@sjdoes.com</a>
+          <a href="mailto:sj@sjdoes.com" class="btn-primary">sj@sjdoes.com</a>
           <a href="https://www.linkedin.com/in/suzanne-jeffers/?skipRedirect=true" class="btn-ghost" target="_blank">LinkedIn</a>
         </div>
       </div>
