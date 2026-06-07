@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SJ DOES</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--peach:#F4A888;--peach-soft:#FFDCCB;--peach-light:#FFF5EF;--cream:#F6F1EB;--sand:#E8DED2;--taupe:#CFC2B4;--cocoa:#3B2F2A;--black:#111111;--white:#FFFFFF}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--black);background:var(--white);overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--sand);padding:0 5%}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;letter-spacing:0.12em;color:var(--peach);text-decoration:none}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:13px;font-weight:400;letter-spacing:0.06em;color:var(--cocoa);text-decoration:none;opacity:0.75;transition:opacity 0.2s}
+.nav-links a:hover{opacity:1}
+
+section{padding:100px 5%}
+.container{max-width:1100px;margin:0 auto}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;background:var(--cream);padding-top:120px;padding-bottom:80px}
+.hero-inner{max-width:1100px;margin:0 auto;width:100%}
+.hero-tag{font-size:12px;letter-spacing:0.18em;color:var(--peach);text-transform:uppercase;margin-bottom:24px;font-weight:500}
+.hero-logo{font-family:'Cormorant Garamond',serif;font-size:clamp(64px,10vw,120px);font-weight:400;letter-spacing:0.08em;color:var(--cocoa);line-height:1;margin-bottom:8px}
+.hero-logo span{color:var(--peach)}
+.hero-divider{width:60px;height:1px;background:var(--peach);margin:28px 0}
+.hero-sub{font-size:clamp(14px,2vw,18px);font-weight:300;color:var(--cocoa);opacity:0.7;letter-spacing:0.04em;max-width:520px;line-height:1.8;margin-bottom:48px}
+.hero-hook{margin-bottom:48px}
+.hero-hook p{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3vw,36px);font-weight:400;color:var(--cocoa);line-height:1.5}
+.hero-hook .question{margin-bottom:20px}
+.hero-hook .answer{color:var(--peach);font-style:italic}
+.hero-hook .extension{color:var(--cocoa);font-style:italic;opacity:0.7}
+.btn-primary{display:inline-block;padding:14px 36px;background:var(--peach);color:var(--white);font-size:13px;letter-spacing:0.1em;text-decoration:none;font-weight:500;transition:background 0.2s}
+.btn-primary:hover{background:var(--cocoa)}
+.btn-ghost{display:inline-block;padding:14px 36px;border:1px solid var(--cocoa);color:var(--cocoa);font-size:13px;letter-spacing:0.1em;text-decoration:none;font-weight:400;margin-left:16px;transition:all 0.2s}
+.btn-ghost:hover{background:var(--cocoa);color:var(--white)}
+
+/* SERVICES */
+#services{background:var(--white)}
+.section-label{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--peach);font-weight:500;margin-bottom:16px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,52px);font-weight:400;color:var(--cocoa);margin-bottom:16px;line-height:1.2}
+.section-intro{font-size:15px;color:var(--cocoa);opacity:0.65;max-width:560px;line-height:1.9;margin-bottom:60px}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--sand)}
+.service-card{background:var(--white);padding:40px 36px;transition:background 0.25s}
+.service-card:hover{background:var(--peach-light)}
+.service-icon{font-size:22px;margin-bottom:20px;opacity:0.85}
+.service-name{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500;color:var(--cocoa);margin-bottom:6px}
+.service-subtitle{font-size:12px;letter-spacing:0.1em;color:var(--peach);text-transform:uppercase;margin-bottom:16px;font-weight:500}
+.service-desc{font-size:14px;color:var(--cocoa);opacity:0.65;line-height:1.8;margin-bottom:20px}
+.service-tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-size:11px;letter-spacing:0.08em;padding:5px 12px;border:1px solid var(--sand);color:var(--cocoa);opacity:0.6;text-transform:uppercase}
+
+/* HOOK STRIP */
+#hook{background:var(--peach);padding:80px 5%}
+.hook-inner{max-width:900px;margin:0 auto;text-align:center}
+.hook-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4.5vw,56px);font-weight:400;color:var(--white);line-height:1.4;margin-bottom:24px}
+.hook-answer{font-size:14px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.8);font-weight:500}
+
+/* CLIENTS */
+#clients{background:var(--cream)}
+.clients-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--sand);margin-top:60px}
+.client-card{background:var(--cream);padding:32px 24px;text-align:center;transition:background 0.2s;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100px}
+.client-card:hover{background:var(--white)}
+.client-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;color:var(--cocoa);letter-spacing:0.04em}
+.client-type{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:0.1em;color:var(--peach);text-transform:uppercase;font-weight:500;margin-top:6px}
+
+/* VALUES */
+#values{background:var(--white)}
+.values-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.values-text .big{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,46px);font-weight:400;color:var(--cocoa);line-height:1.4;margin-bottom:32px}
+.values-text .big em{color:var(--peach);font-style:italic}
+.values-list{list-style:none;display:flex;flex-direction:column}
+.values-list li{padding:18px 0;border-bottom:1px solid var(--sand);display:flex;align-items:baseline;gap:16px;font-size:15px;color:var(--cocoa)}
+.values-list li::before{content:'🍑';font-size:12px;flex-shrink:0}
+.values-desc{font-size:12px;color:var(--cocoa);opacity:0.5;margin-left:auto;font-style:italic}
+
+/* TESTIMONIALS */
+#testimonials{background:var(--cream)}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px}
+.testimonial-card{background:var(--white);padding:32px;transition:background 0.25s;border:1px solid var(--sand)}
+.testimonial-card:hover{background:var(--peach-light)}
+.testimonial-tag{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--peach);font-weight:500;margin-bottom:14px}
+.testimonial-quote{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--cocoa);line-height:1.7;margin-bottom:20px}
+.testimonial-quote::before{content:'\201C';color:var(--peach)}
+.testimonial-quote::after{content:'\201D';color:var(--peach)}
+.open-quote{display:none}
+.testimonial-author{font-size:13px;font-weight:500;color:var(--cocoa);letter-spacing:0.04em}
+.testimonial-role{font-size:12px;color:var(--cocoa);opacity:0.5;margin-top:4px}
+
+/* ABOUT */
+#about{background:var(--cocoa);padding:100px 5%}
+.about-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-logo{font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:400;letter-spacing:0.1em;color:var(--peach);line-height:1}
+.about-content h3{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400;color:var(--white);margin-bottom:20px;line-height:1.4}
+.about-content p{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.9;margin-bottom:16px}
+.about-content p strong{color:var(--peach);font-weight:500}
+
+/* SHOP */
+#shop{background:var(--peach-soft);padding:100px 5%}
+.shop-inner{max-width:1100px;margin:0 auto}
+.merch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px;margin-top:60px;margin-bottom:48px}
+.merch-card{background:var(--white);overflow:hidden}
+.merch-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.merch-body{padding:24px 28px}
+.merch-name{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--cocoa);font-weight:500;margin-bottom:6px}
+.merch-detail{font-size:13px;color:var(--cocoa);opacity:0.55;margin-bottom:12px}
+.merch-badge{display:inline-block;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--peach);font-weight:500;border:1px solid var(--peach);padding:4px 12px}
+
+/* CONTACT */
+#contact{background:var(--white);text-align:center}
+.contact-peach{font-size:28px;margin-bottom:24px}
+.contact-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,52px);font-weight:400;color:var(--cocoa);margin-bottom:16px}
+.contact-sub{font-size:15px;color:var(--cocoa);opacity:0.6;max-width:440px;margin:0 auto 40px;line-height:1.8}
+.contact-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+footer{background:var(--cream);padding:32px 5%;border-top:1px solid var(--sand)}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;letter-spacing:0.12em;color:var(--peach)}
+.footer-copy{font-size:12px;color:var(--cocoa);opacity:0.45;letter-spacing:0.04em}
+.footer-tagline{font-size:12px;letter-spacing:0.1em;color:var(--cocoa);opacity:0.5;font-style:italic}
+
+@media(max-width:768px){
+  .values-layout,.about-inner{grid-template-columns:1fr;gap:40px}
+  .nav-links{display:none}
+  .btn-ghost{margin-left:0;margin-top:12px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">SJ DOES</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#clients">Clients</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <p class="hero-tag">Solutions. Strategy. Done.</p>
+    <h1 class="hero-logo">SJ<span> DOES</span></h1>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">Serving law firms, in-house counsel and the businesses that serve legal.<br>Strategy, marketing, legal tech, recruitment, coaching — and whatever it takes.</p>
+    <div class="hero-hook">
+      <p class="question">Do you know anyone who does that?</p>
+      <p class="answer" style="margin-top:28px">SJ Does.</p>
+      <p class="extension" style="margin-top:16px">And if she doesn't, she knows someone who can.</p>
+    </div>
+    <a href="#services" class="btn-primary">See what SJ Does</a>
+    <a href="#contact" class="btn-ghost">Get in touch</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <p class="section-label">What SJ Does</p>
+    <h2 class="section-title">The ecosystem.</h2>
+    <p class="section-intro">Every service is connected. The common denominator is always legal — and the ROI of your overall business.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🎯</div>
+        <h3 class="service-name">Strategy</h3>
+        <p class="service-subtitle">Clarity first.</p>
+        <p class="service-desc">Step back, see the big picture and build a strategy that actually moves the needle. No fluff — just clarity, direction and results.</p>
+        <div class="service-tags"><span class="tag">Clarity</span><span class="tag">Direction</span><span class="tag">Growth</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📣</div>
+        <h3 class="service-name">Marketing</h3>
+        <p class="service-subtitle">Smart. Human.</p>
+        <p class="service-desc">Thoughtful marketing that connects, converts and builds brand authority — without the noise. Predominantly LinkedIn-first, with a whole-firm lens.</p>
+        <div class="service-tags"><span class="tag">Brand</span><span class="tag">Positioning</span><span class="tag">Campaigns</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💬</div>
+        <h3 class="service-name">Social Media</h3>
+        <p class="service-subtitle">Strategic. Intentional.</p>
+        <p class="service-desc">A single source of truth across platforms to unify your brand. LinkedInterventions that build visibility, spark conversations and create impact.</p>
+        <div class="service-tags"><span class="tag">LinkedIn</span><span class="tag">Content</span><span class="tag">Engagement</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🤖</div>
+        <h3 class="service-name">Legal Tech + AI</h3>
+        <p class="service-subtitle">Smarter choices.</p>
+        <p class="service-desc">Survey → interviews → findings report → market research → recommendations. Helping law firms and in-house teams cut through the noise and implement what works.</p>
+        <div class="service-tags"><span class="tag">Discovery</span><span class="tag">Evaluation</span><span class="tag">Adoption</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🤝</div>
+        <h3 class="service-name">Recruitment</h3>
+        <p class="service-subtitle">The right fit.</p>
+        <p class="service-desc">Connecting exceptional legal talent at partner level with the right opportunities. Mostly lateral partner moves — where relationship and judgement matter most.</p>
+        <div class="service-tags"><span class="tag">Partner Search</span><span class="tag">Lateral</span><span class="tag">Match</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✨</div>
+        <h3 class="service-name">Coaching</h3>
+        <p class="service-subtitle">Confidence. Growth.</p>
+        <p class="service-desc">Interview coaching for legal professionals at all levels using a 5-stage framework. Show up, stand out and own the room — from NQ to Partner.</p>
+        <div class="service-tags"><span class="tag">Interview Prep</span><span class="tag">Framework</span><span class="tag">Mindset</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOOK STRIP -->
+<div id="hook">
+  <div class="hook-inner">
+    <p class="hook-quote">"Do you know anyone who does that?"</p>
+    <p class="hook-answer">SJ Does — and if she doesn't, she knows someone who can.</p>
+  </div>
+</div>
+
+<!-- CLIENTS -->
+<section id="clients">
+  <div class="container">
+    <p class="section-label">Trusted by</p>
+    <h2 class="section-title">Clients.</h2>
+    <p class="section-intro">From global law firms to in-house teams and the businesses that serve them — the common thread is legal.</p>
+    <div class="clients-grid">
+      <div class="client-card"><span class="client-name">Legal CVs &amp; Interview Coaching</span><span class="client-type">Coaching</span></div>
+      <div class="client-card"><span class="client-name">Legalencia</span><span class="client-type">Legal Consultancy</span></div>
+      <div class="client-card"><span class="client-name">RightNow Support</span><span class="client-type">Legal Services</span></div>
+      <div class="client-card"><span class="client-name">Arbor Law</span><span class="client-type">Law Firm</span></div>
+      <div class="client-card"><span class="client-name">Lennon Legal</span><span class="client-type">Law Firm</span></div>
+      <div class="client-card"><span class="client-name">The Lawyers Retreat</span><span class="client-type">Community</span></div>
+      <div class="client-card"><span class="client-name">Aries Practice Management</span><span class="client-type">Legal Operations</span></div>
+      <div class="client-card"><span class="client-name">The Legal Heart</span><span class="client-type">Community</span></div>
+      <div class="client-card"><span class="client-name">Binderr</span><span class="client-type">Legal Tech</span></div>
+      <div class="client-card"><span class="client-name">Tacit Legal</span><span class="client-type">Law Firm</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values">
+  <div class="container">
+    <div class="values-layout">
+      <div class="values-text">
+        <p class="section-label">Our values</p>
+        <p class="big">Warm. Intelligent.<br>Capable. Creative.<br>Reliable. Human.<br><em>A little bit cheeky.</em></p>
+      </div>
+      <ul class="values-list">
+        <li>Human first <span class="values-desc">people before process</span></li>
+        <li>Depth over speed <span class="values-desc">done properly</span></li>
+        <li>Honesty always <span class="values-desc">no sugar-coating</span></li>
+        <li>Excellence, quietly <span class="values-desc">results speak</span></li>
+        <li>Curiosity forever <span class="values-desc">always learning</span></li>
+        <li>Community matters <span class="values-desc">the network is everything</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <p class="section-label">What they say</p>
+    <h2 class="section-title">Testimonials.</h2>
+    <p class="section-intro">Real words from real people — clients, collaborators and the professionals SJ has coached.</p>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card">
+        <p class="testimonial-tag">Partnerships &amp; Community — Binderr</p>
+        <span class="open-quote">"</span>
+        <p class="testimonial-quote">Suzanne is a unicorn. She worked with us across partnerships, community and marketing at Binderr, and consistently delivered at a high level no matter what was thrown at her. More than just being incredibly capable, she's also one of the most loyal and caring people I know.</p>
+        <p class="testimonial-author">Jacob Appel</p>
+        <p class="testimonial-role">CEO, Binderr</p>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-tag">Strategy &amp; Community — The Legal Heart</p>
+        <span class="open-quote">"</span>
+        <p class="testimonial-quote">Suzanne was instrumental in bringing my vision for The Legal Heart to life. She listened. She understood what I was creating. And don't get me started on the other projects we have worked on together. Wow!</p>
+        <p class="testimonial-author">Kirsty Pappin</p>
+        <p class="testimonial-role">Fractional COO &amp; Founder, Aries Legal Practice Management</p>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-tag">Community &amp; Partnerships — Binderr</p>
+        <span class="open-quote">"</span>
+        <p class="testimonial-quote">SJ has a natural talent for building relationships — her warm and approachable nature makes people feel instantly at ease, and she has a genuine ability to bring others on board with her vision. She nurtures connections, ensuring long-term value for everyone involved.</p>
+        <p class="testimonial-author">Dan Houston</p>
+        <p class="testimonial-role">Senior Business Development Manager, Spotted Zebra</p>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-tag">Recruitment &amp; Strategy</p>
+        <span class="open-quote">"</span>
+        <p class="testimonial-quote">I would 1000% recommend working with Suzanne. She has excellent technical and business knowledge, combined with a creative flair and strategic approach — that's hard to find. She works tirelessly to ensure the right fit between a candidate and the firm. It's not a numbers game for her.</p>
+        <p class="testimonial-author">Sarah Reza</p>
+        <p class="testimonial-role">Former Solicitor &amp; Legal CV Writer</p>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-tag">Legal Tech &amp; Innovation</p>
+        <span class="open-quote">"</span>
+        <p class="testimonial-quote">SJ has an amazing energy and her ability to break down complicated technological terminology so that understanding can be shared is not an easy task — but she manages this with ease and often in poetic form. Uniquely creative and driven, with a legal background to boot.</p>
+        <p class="testimonial-author">Ben Lee</p>
+        <p class="testimonial-role">Partner, Web3 &amp; Disruptive Tech, Andersen LLP</p>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-tag">Interview Coaching — Legal CVs</p>
+        <span class="open-quote">"</span>
+        <p class="testimonial-quote">As a direct result of the hard work and coaching by Suzanne, I was able to perform very well at interview, securing my first paralegal role and training contract with a top 50 firm in my first application cycle.</p>
+        <p class="testimonial-author">Coaching Client</p>
+        <p class="testimonial-role">Newly qualified — top 50 firm</p>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-tag">Interview Coaching — Training Contract</p>
+        <span class="open-quote">"</span>
+        <p class="testimonial-quote">My son was trying to secure a training contract for 2 cycles and kept failing at the vacation scheme or interview stage. Suzanne brought him up to speed fast. With her dedicated support, he finally got over the line.</p>
+        <p class="testimonial-author">Parent of Coaching Client</p>
+        <p class="testimonial-role">Training contract secured — US firm</p>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-tag">Interview Coaching — US Firm</p>
+        <span class="open-quote">"</span>
+        <p class="testimonial-quote">I wanted a TC at a top US firm and kept failing at competency interviews. I genuinely could not work out what firms were looking for even after multiple attempts. Suzanne made it obvious in about ten minutes.</p>
+        <p class="testimonial-author">Coaching Client</p>
+        <p class="testimonial-role">Training contract secured — top US firm</p>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-tag">General</p>
+        <span class="open-quote">"</span>
+        <p class="testimonial-quote">Suzanne is a confident communicator and a valuable member of any team. She provided an outstanding level of professionalism with all of her customers and always went above and beyond. Suzanne would be an asset to any business lucky enough to have her.</p>
+        <p class="testimonial-author">Kerri Gallimore</p>
+        <p class="testimonial-role">Senior Recruiter, Levy UK + Ireland</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-logo">SJ<br>DOES</div>
+    <div class="about-content">
+      <h3>A qualified solicitor who left to build something better.</h3>
+      <p>Suzanne Jeffers is a qualified solicitor with over a decade of experience in and around the legal sector. After qualifying during the pandemic, she made the decision to step away from traditional practice — not away from law, but towards something more useful to it.</p>
+      <p><strong>SJ DOES is the ecosystem she built.</strong> Strategy, marketing, legal tech, recruitment and coaching — all connected, all rooted in a deep understanding of how law firms actually work and what they actually need.</p>
+      <p>She's been in the room. She knows the pressures. And she brings <strong>real commercial awareness</strong> — the kind earned through experience, not borrowed from a textbook.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section id="shop">
+  <div class="shop-inner">
+    <p class="section-label">The SJ DOES Shop</p>
+    <h2 class="section-title">Wear the ecosystem.</h2>
+    <p class="section-intro">Merch that means something. For people who get things done.</p>
+    <div class="merch-grid">
+      <div class="merch-card">
+        <img class="merch-img" src="https://i.imgur.com/placeholder-cap.jpg"
+          onerror="this.style.background='#F4A888';this.style.display='block';this.alt=''"
+          style="background:var(--peach-soft);min-height:220px"
+          alt="Peach please cap — SJ DOES branded baseball cap in peach with embroidered text">
+        <div class="merch-body">
+          <p class="merch-name">Peach, please! Cap</p>
+          <p class="merch-detail">Peach · Embroidered · SJ DOES</p>
+          <span class="merch-badge">Coming soon</span>
+        </div>
+      </div>
+      <div class="merch-card">
+        <img class="merch-img" src="https://i.imgur.com/placeholder-tote.jpg"
+          onerror="this.style.background='#FFDCCB';this.style.display='block';this.alt=''"
+          style="background:var(--peach-soft);min-height:220px"
+          alt="SJ DOES Everything tote bag in peach with embroidered text">
+        <div class="merch-body">
+          <p class="merch-name">Everything Tote</p>
+          <p class="merch-detail">Peach · Embroidered · SJ DOES Everything</p>
+          <span class="merch-badge">Coming soon</span>
+        </div>
+      </div>
+    </div>
+    <a href="#contact" class="btn-primary">Notify me when the shop is live</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-peach">🍑</div>
+    <h2 class="contact-title">Let's talk.</h2>
+    <p class="contact-sub">Whether you need strategy, a LinkedIntervention, help navigating legal tech, or just want to know if SJ can help — reach out.</p>
+    <div class="contact-links">
+      <a href="mailto:hello@sjdoes.com" class="btn-primary">hello@sjdoes.com</a>
+      <a href="https://www.linkedin.com/in/suzanne-jeffers/?skipRedirect=true" class="btn-ghost" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-logo">SJ DOES</span>
+    <span class="footer-tagline">Solutions. Strategy. Done.</span>
+    <span class="footer-copy">© 2026 SJ Does · sjdoes.com</span>
+  </div>
+</footer>
+
+</body>
+</html>
