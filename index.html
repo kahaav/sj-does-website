@@ -1017,6 +1017,31 @@
         .photo-4, .photo-7, .photo-8, .photo-9 {
           height: 360px
         }
+
+        #section-indicator {
+          display: block
+        }
+      }
+
+      #section-indicator {
+        display: none;
+        position: fixed;
+        top: 19px;
+        right: 20px;
+        z-index: 200;
+        font-family: 'Inter', sans-serif;
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--cocoa);
+        opacity: 0;
+        transition: opacity 0.4s;
+        pointer-events: none
+      }
+
+      #section-indicator.visible {
+        opacity: 0.45
       }
     </style>
   </head>
@@ -1448,7 +1473,37 @@
         <span class="footer-copy">© 2026 SJ Does · sjdoes.com</span>
       </div>
     </footer>
+  <div id="section-indicator" aria-hidden="true"></div>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script>lucide.createIcons();</script>
+  <script>
+    (function () {
+      var indicator = document.getElementById('section-indicator');
+      var sections = Array.from(document.querySelectorAll('section[id]'));
+      var names = {
+        services: 'Services',
+        clients: 'Clients',
+        values: 'Values',
+        testimonials: 'Testimonials',
+        about: 'About',
+        gallery: 'Gallery',
+        shop: 'Shop',
+        contact: 'Contact'
+      };
+      function update() {
+        if (window.innerWidth > 768) return;
+        var threshold = window.innerHeight * 0.3;
+        var current = null;
+        sections.forEach(function (s) {
+          if (s.getBoundingClientRect().top <= threshold) current = s.id;
+        });
+        var name = (current && names[current]) ? names[current] : '';
+        indicator.textContent = name;
+        indicator.classList.toggle('visible', !!name);
+      }
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+  </script>
   </body>
 </html>
