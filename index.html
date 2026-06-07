@@ -86,6 +86,71 @@
         opacity: 1
       }
 
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+        height: 18px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        flex-shrink: 0
+      }
+
+      .hamburger span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: var(--cocoa);
+        transition: transform 0.3s ease, opacity 0.3s ease
+      }
+
+      .hamburger.open span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg)
+      }
+
+      .hamburger.open span:nth-child(2) {
+        opacity: 0
+      }
+
+      .hamburger.open span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg)
+      }
+
+      .mobile-menu {
+        display: none;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.35s ease;
+        background: var(--cream);
+        border-top: 1px solid var(--sand)
+      }
+
+      .mobile-menu.open {
+        max-height: 440px
+      }
+
+      .mobile-menu a {
+        display: block;
+        padding: 18px 5%;
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+        letter-spacing: 0.08em;
+        color: var(--cocoa);
+        text-decoration: none;
+        border-bottom: 1px solid var(--sand);
+        transition: color 0.2s, background 0.2s
+      }
+
+      .mobile-menu a:hover,
+      .mobile-menu a:active {
+        color: var(--peach);
+        background: var(--peach-light)
+      }
+
       section {
         padding: 100px 5%
       }
@@ -811,6 +876,20 @@
           display: none
         }
 
+        .hamburger {
+          display: flex
+        }
+
+        .mobile-menu {
+          display: block
+        }
+
+        #section-indicator {
+          right: auto;
+          left: 50%;
+          transform: translateX(-50%)
+        }
+
         .btn-ghost {
           margin-left: 0;
           margin-top: 12px
@@ -1069,6 +1148,19 @@
             <a href="#contact">Contact</a>
           </li>
         </ul>
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <div class="mobile-menu" id="mobile-menu">
+        <a href="#services">Services</a>
+        <a href="#clients">Clients</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#about">About</a>
+        <a href="#shop">Shop</a>
+        <a href="#contact">Contact</a>
       </div>
     </nav>
     <!-- HERO -->
@@ -1476,6 +1568,28 @@
   <div id="section-indicator" aria-hidden="true"></div>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script>lucide.createIcons();</script>
+  <script>
+    (function () {
+      var hamburger = document.querySelector('.hamburger');
+      var mobileMenu = document.getElementById('mobile-menu');
+      var indicator = document.getElementById('section-indicator');
+
+      hamburger.addEventListener('click', function () {
+        var isOpen = hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-expanded', String(isOpen));
+        if (isOpen) indicator.classList.remove('visible');
+      });
+
+      mobileMenu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          hamburger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+  </script>
   <script>
     (function () {
       var indicator = document.getElementById('section-indicator');
