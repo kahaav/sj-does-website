@@ -910,7 +910,7 @@
       .gallery-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: 280px 280px 480px;
+        grid-template-rows: 280px 280px 480px 280px 280px 400px;
         gap: 8px;
         margin-top: 60px
       }
@@ -977,6 +977,12 @@
       .photo-6 { grid-column: 1 / 3; grid-row: 3 }
       .photo-6 img { object-position: center top }
       .photo-7 { grid-column: 3 / 5; grid-row: 3 }
+      .photo-8 { grid-column: 1 / 4; grid-row: 4 }
+      .photo-9 { grid-column: 4 / 5; grid-row: 4 / 6 }
+      .photo-10 { grid-column: 1 / 2; grid-row: 5 }
+      .photo-11 { grid-column: 2 / 4; grid-row: 5 }
+      .photo-12 { grid-column: 1 / 3; grid-row: 6 }
+      .photo-13 { grid-column: 3 / 5; grid-row: 6 }
 
       @media (max-width: 768px) {
         .gallery-grid {
@@ -986,13 +992,15 @@
         }
 
         .photo-1, .photo-2, .photo-3,
-        .photo-4, .photo-5, .photo-6, .photo-7 {
+        .photo-4, .photo-5, .photo-6, .photo-7,
+        .photo-8, .photo-9, .photo-10,
+        .photo-11, .photo-12, .photo-13 {
           grid-column: 1 / -1;
           grid-row: auto;
           height: 260px
         }
 
-        .photo-4, .photo-7 {
+        .photo-4, .photo-7, .photo-8, .photo-9 {
           height: 360px
         }
       }
@@ -1339,6 +1347,36 @@
           <div class="photo-slot photo-7" data-caption="Working from Spain, 2026 - In the mountains">
             <img src="MOUNTAIN..jpeg" alt="Working from Spain, 2026 - In the mountains">
             <span class="photo-caption">Working from Spain, 2026 - In the mountains</span>
+          </div>
+
+          <div class="photo-slot photo-8" data-caption="The Lawyers Retreat 2025 - White Party">
+            <img src="TLR2025WHITEPARTY.png" alt="The Lawyers Retreat 2025 - White Party">
+            <span class="photo-caption">The Lawyers Retreat 2025 - White Party</span>
+          </div>
+
+          <div class="photo-slot photo-9" data-caption="The Lawyers Retreat 2025 - Session">
+            <img src="TLR25session.png" alt="The Lawyers Retreat 2025 - Session">
+            <span class="photo-caption">The Lawyers Retreat 2025 - Session</span>
+          </div>
+
+          <div class="photo-slot photo-10" data-caption="The Lawyers Retreat 2025 - On the hike">
+            <img src="TLR25HIKE.png" alt="The Lawyers Retreat 2025 - On the hike">
+            <span class="photo-caption">The Lawyers Retreat 2025 - On the hike</span>
+          </div>
+
+          <div class="photo-slot photo-11" data-caption="The Lawyers Retreat 2025 - Conversations, Ibiza">
+            <img src="TLR2025(1).png" alt="The Lawyers Retreat 2025 - Conversations, Ibiza">
+            <span class="photo-caption">The Lawyers Retreat 2025 - Conversations, Ibiza</span>
+          </div>
+
+          <div class="photo-slot photo-12" data-caption="The Lawyers Retreat 2025 - Strategy session">
+            <img src="TLR2025TACIT.png" alt="The Lawyers Retreat 2025 - Strategy session">
+            <span class="photo-caption">The Lawyers Retreat 2025 - Strategy session</span>
+          </div>
+
+          <div class="photo-slot photo-13" data-caption="The Lawyers Retreat 2025 - In conversation">
+            <img src="TLR2025(2).png" alt="The Lawyers Retreat 2025 - In conversation">
+            <span class="photo-caption">The Lawyers Retreat 2025 - In conversation</span>
           </div>
 
         </div>
