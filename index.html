@@ -873,6 +873,29 @@
         color: var(--peach)
       }
 
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .mobile-nav {
+          display: flex;
+          position: static;
+          background: var(--cream);
+          backdrop-filter: none;
+          overflow-x: visible;
+          border-bottom: 1px solid var(--sand)
+        }
+        .mobile-nav-inner {
+          justify-content: center;
+          flex-wrap: wrap;
+          padding: 4px 40px;
+          white-space: normal;
+          width: 100%
+        }
+        .mobile-nav-inner a {
+          padding: 16px 28px;
+          font-size: 12px;
+          flex-shrink: 1
+        }
+      }
+
       /* GALLERY */
       #gallery {
         background: var(--white);
