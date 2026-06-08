@@ -55,16 +55,43 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 64px
+        height: 72px
+      }
+
+      .nav-brand {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2px;
+        text-decoration: none
+      }
+
+      .nav-brand-top {
+        display: flex;
+        align-items: center;
+        gap: 6px
       }
 
       .nav-logo {
         font-family: 'Cormorant Garamond', serif;
-        font-size: 22px;
+        font-size: 20px;
         font-weight: 500;
         letter-spacing: 0.12em;
-        color: var(--peach);
-        text-decoration: none
+        color: var(--peach)
+      }
+
+      .nav-peach {
+        font-size: 14px;
+        line-height: 1
+      }
+
+      .nav-tagline {
+        font-size: 9px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--cocoa);
+        opacity: 0.45;
+        font-weight: 400
       }
 
       .nav-links {
@@ -266,33 +293,34 @@
         opacity: 0.7
       }
 
-      .btn-primary {
+      .btn-primary, .btn-ghost {
         display: inline-block;
-        padding: 14px 36px;
-        background: var(--peach);
-        color: var(--white);
+        padding: 14px 0;
+        width: 200px;
+        text-align: center;
         font-size: 13px;
         letter-spacing: 0.1em;
         text-decoration: none;
         font-weight: 500;
-        transition: background 0.2s
+        transition: all 0.2s
+      }
+
+      .btn-primary {
+        background: var(--peach);
+        color: var(--white);
+        border: 1px solid var(--peach)
       }
 
       .btn-primary:hover {
-        background: var(--cocoa)
+        background: var(--cocoa);
+        border-color: var(--cocoa)
       }
 
       .btn-ghost {
-        display: inline-block;
-        padding: 14px 36px;
-        border: 1px solid var(--cocoa);
+        background: transparent;
         color: var(--cocoa);
-        font-size: 13px;
-        letter-spacing: 0.1em;
-        text-decoration: none;
-        font-weight: 400;
-        margin-left: 16px;
-        transition: all 0.2s
+        border: 1px solid var(--cocoa);
+        margin-left: 0
       }
 
       .btn-ghost:hover {
@@ -954,7 +982,7 @@
       .mobile-nav {
         display: none;
         position: sticky;
-        top: 64px;
+        top: 72px;
         z-index: 90;
         background: rgba(255, 255, 255, 0.97);
         backdrop-filter: blur(8px);
@@ -1158,26 +1186,20 @@
   <body>
     <nav>
       <div class="nav-inner">
-        <a href="#hero" class="nav-logo">SJ DOES</a>
+        <a href="#hero" class="nav-brand">
+          <div class="nav-brand-top">
+            <span class="nav-logo">SJ DOES</span>
+            <span class="nav-peach">🍑</span>
+          </div>
+          <span class="nav-tagline">Solutions. Strategy. Done.</span>
+        </a>
         <ul class="nav-links">
-          <li>
-            <a href="#services">Services</a>
-          </li>
-          <li>
-            <a href="#clients">Clients</a>
-          </li>
-          <li>
-            <a href="#testimonials">Testimonials</a>
-          </li>
-          <li>
-            <a href="#about">About</a>
-          </li>
-          <li>
-            <a href="#shop">Shop</a>
-          </li>
-          <li>
-            <a href="#contact">Contact</a>
-          </li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#clients">Clients</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
         <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
           <span></span>
@@ -1198,7 +1220,7 @@
     <section id="hero">
       <div class="hero-inner">
         <div class="hero-content">
-          <p class="hero-tag">Solutions. Strategy. Done.</p>
+          <p class="hero-tag">A legal sector ecosystem.</p>
           <div class="hero-logo-wrap">
             <h1 class="hero-logo">SJ <span> DOES</span></h1>
             <div class="hero-divider"></div>
@@ -1209,8 +1231,10 @@
             <p class="answer" style="margin-top:28px">SJ Does.</p>
             <p class="extension" style="margin-top:16px">And if she doesn't, she knows someone who can.</p>
           </div>
-          <a href="#services" class="btn-primary">See what SJ Does</a>
-          <a href="#contact" class="btn-ghost">Get in touch</a>
+          <div style="display:flex;align-items:center;gap:16px">
+            <a href="#services" class="btn-primary">See what SJ Does</a>
+            <a href="#contact" class="btn-ghost">Get in touch</a>
+          </div>
         </div>
         <div class="hero-image">
           <img src="MOUNTAIN..jpeg" alt="SJ Jeffers in the mountains">
