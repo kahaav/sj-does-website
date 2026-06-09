@@ -225,65 +225,35 @@
         display: block
       }
 
-      .hero-tag {
-        font-size: 12px;
-        letter-spacing: 0.18em;
-        color: var(--peach);
-        text-transform: uppercase;
-        margin-bottom: 24px;
-        font-weight: 500
-      }
-
-      .hero-logo-wrap {
-        display: inline-block
-      }
-
-      .hero-logo {
+      .hero-main {
         font-family: 'Cormorant Garamond', serif;
-        font-size: clamp(64px, 10vw, 120px);
+        font-size: clamp(28px, 3.5vw, 48px);
         font-weight: 400;
-        letter-spacing: 0.08em;
         color: var(--cocoa);
-        line-height: 1;
-        margin-bottom: 8px
-      }
-
-      .hero-logo span {
-        color: var(--peach)
-      }
-
-      .hero-divider {
-        width: 100%;
-        height: 1px;
-        background: var(--peach);
-        margin: 28px 0
+        line-height: 1.25;
+        max-width: 560px
       }
 
       .hero-sub {
-        font-size: clamp(14px, 2vw, 18px);
+        font-size: clamp(14px, 2vw, 16px);
         font-weight: 300;
         color: var(--cocoa);
-        opacity: 0.7;
+        opacity: 0.65;
         letter-spacing: 0.04em;
         max-width: 520px;
-        line-height: 1.8;
-        margin-bottom: 48px
-      }
-
-      .hero-hook {
-        margin-bottom: 48px
+        line-height: 1.8
       }
 
       .hero-hook p {
         font-family: 'Cormorant Garamond', serif;
-        font-size: clamp(20px, 3vw, 36px);
+        font-size: clamp(18px, 2.5vw, 28px);
         font-weight: 400;
         color: var(--cocoa);
         line-height: 1.5
       }
 
       .hero-hook .question {
-        margin-bottom: 20px
+        opacity: 0.75
       }
 
       .hero-hook .answer {
@@ -292,9 +262,8 @@
       }
 
       .hero-hook .extension {
-        color: var(--cocoa);
         font-style: italic;
-        opacity: 0.7
+        opacity: 0.6
       }
 
       .hero-buttons {
@@ -1263,18 +1232,14 @@
     <section id="hero">
       <div class="hero-inner">
         <div class="hero-content">
-          <p class="hero-tag">A legal sector ecosystem.</p>
-          <div class="hero-logo-wrap">
-            <h1 class="hero-logo">SJ <span> DOES</span></h1>
-            <div class="hero-divider"></div>
-          </div>
-          <p class="hero-sub">Serving law firms, in-house counsel and the businesses that serve legal. <br>Strategy, marketing, legal tech, recruitment, coaching - and whatever it takes. </p>
+          <h1 class="hero-main">Serving law firms, in-house counsel and the businesses that serve legal.</h1>
+          <p class="hero-sub" style="margin-top:20px;margin-bottom:36px">Strategy. Marketing. Legal Tech. Recruitment. Coaching — and whatever it takes.</p>
           <div class="hero-hook">
             <p class="question">Do you know anyone who does that?</p>
-            <p class="answer" style="margin-top:28px">SJ Does.</p>
-            <p class="extension" style="margin-top:16px">And if she doesn't, she knows someone who can.</p>
+            <p class="answer" style="margin-top:20px">SJ Does.</p>
+            <p class="extension" style="margin-top:12px">And if she doesn't, she knows someone who can.</p>
           </div>
-          <div class="hero-buttons">
+          <div class="hero-buttons" style="margin-top:40px">
             <a href="#services" class="btn-primary">See what SJ Does</a>
             <a href="#contact" class="btn-ghost">Get in touch</a>
           </div>
