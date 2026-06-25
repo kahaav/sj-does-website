@@ -1058,138 +1058,352 @@
         }
       }
 
-      /* GALLERY */
+      /* ═══════════════════════════════════════
+         GALLERY — PREMIUM CAROUSEL
+         ═══════════════════════════════════════ */
+
       #gallery {
         background: var(--white);
-        padding: 100px 5%
+        padding: 100px 0
       }
 
-      .gallery-inner {
+      .gallery-header {
+        padding: 0 5%;
         max-width: 1100px;
         margin: 0 auto
       }
 
-      .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: 280px 280px 480px 280px 280px 400px 280px 280px 480px 280px 280px;
-        gap: 8px;
+      /* ── Carousel shell ── */
+
+      .carousel {
+        position: relative;
         margin-top: 60px
       }
 
-      .photo-slot {
-        position: relative;
+      .carousel-viewport {
         overflow: hidden;
-        background: var(--sand);
-        cursor: pointer
+        cursor: grab;
+        -webkit-user-select: none;
+        user-select: none
       }
 
-      .photo-slot img {
+      .carousel-viewport:active { cursor: grabbing }
+
+      .carousel-track {
+        display: flex;
+        align-items: stretch;
+        gap: 16px;
+        padding: 44px 60px;
+        will-change: transform;
+        -webkit-user-select: none;
+        user-select: none;
+        list-style: none;
+        margin: -44px 0
+      }
+
+      /* ── Slides ── */
+
+      .carousel-slide {
+        flex: 0 0 auto;
+        width: 320px;
+        transition: filter 550ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                    opacity 550ms cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      }
+
+      .carousel-slide--wide { width: 460px }
+
+      /* ── Figure & image ── */
+
+      .carousel-figure {
+        position: relative;
+        width: 100%;
+        height: 460px;
+        border-radius: 16px;
+        overflow: hidden;
+        margin: 0;
+        will-change: transform;
+        transition: transform 550ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                    box-shadow 550ms cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      }
+
+      .carousel-figure img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center top;
         display: block;
-        transition: transform 0.5s ease
+        -webkit-user-drag: none;
+        pointer-events: none;
+        transition: transform 550ms cubic-bezier(0.25, 0.46, 0.45, 0.94)
       }
 
-      .photo-slot:hover img {
-        transform: scale(1.03)
+      /* ── Hover states (desktop only) ── */
+
+      @media (hover: hover) {
+        .carousel-slide.is-hovered .carousel-figure {
+          transform: scale(1.07);
+          box-shadow:
+            0 28px 64px rgba(59, 47, 42, 0.22),
+            0 8px 20px rgba(59, 47, 42, 0.10)
+        }
+
+        .carousel-slide.is-dimmed {
+          opacity: 0.75;
+          filter: brightness(0.82) blur(0.4px)
+        }
       }
 
-      .photo-slot::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: var(--cream);
-        opacity: 0;
-        transition: opacity 0.35s;
-        pointer-events: none
-      }
+      /* ── Caption overlay ── */
 
-      .photo-slot:hover::after {
-        opacity: 0.18
-      }
-
-      .photo-caption {
+      .carousel-caption {
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
-        padding: 20px 16px 14px;
+        padding: 80px 20px 20px;
+        background: linear-gradient(
+          to top,
+          rgba(17, 11, 8, 0.80) 0%,
+          rgba(17, 11, 8, 0.35) 52%,
+          transparent 100%
+        );
+        transform: translateY(8px);
+        opacity: 0;
+        transition: transform 520ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                    opacity 420ms ease-out;
+        pointer-events: none
+      }
+
+      .carousel-slide.is-hovered .carousel-caption,
+      .carousel-slide.is-tapped  .carousel-caption { transform: translateY(0); opacity: 1 }
+
+      /* Always-visible on touch devices */
+      @media (hover: none) {
+        .carousel-caption { transform: translateY(0); opacity: 0.9 }
+      }
+
+      .caption-title {
+        display: block;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 17px;
+        font-weight: 500;
+        color: #fff;
+        letter-spacing: 0.02em;
+        line-height: 1.3;
+        margin-bottom: 2px
+      }
+
+      .caption-date {
+        display: block;
         font-family: 'Inter', sans-serif;
-        font-size: 11px;
-        letter-spacing: 0.12em;
+        font-size: 10px;
+        font-weight: 500;
+        color: rgba(255,255,255,0.58);
+        letter-spacing: 0.18em;
         text-transform: uppercase;
+        margin-bottom: 8px
+      }
+
+      .caption-desc {
+        display: block;
+        font-family: 'Inter', sans-serif;
+        font-size: 12px;
+        color: rgba(255,255,255,0.72);
+        line-height: 1.65;
+        margin-bottom: 6px
+      }
+
+      .caption-location {
+        display: block;
+        font-family: 'Inter', sans-serif;
+        font-size: 10px;
+        color: rgba(255,255,255,0.42);
+        letter-spacing: 0.13em;
+        text-transform: uppercase
+      }
+
+      /* ── Nav arrows ── */
+
+      .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.92);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(59,47,42,0.08);
+        box-shadow: 0 2px 16px rgba(59,47,42,0.10),
+                    inset 0 1px 0 rgba(255,255,255,0.60);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         color: var(--cocoa);
-        opacity: 0.5;
-        background: linear-gradient(transparent, rgba(246, 241, 235, 0.5));
-        transition: opacity 0.3s;
-        z-index: 1
+        transition: background 380ms cubic-bezier(0.25,0.46,0.45,0.94),
+                    box-shadow 380ms cubic-bezier(0.25,0.46,0.45,0.94),
+                    transform   380ms cubic-bezier(0.25,0.46,0.45,0.94),
+                    opacity     300ms ease
       }
 
-      .photo-slot:hover .photo-caption {
-        opacity: 1
+      .carousel-btn:hover {
+        background: #fff;
+        box-shadow: 0 6px 32px rgba(59,47,42,0.18),
+                    inset 0 1px 0 rgba(255,255,255,0.80);
+        transform: translateY(-50%) scale(1.08)
       }
 
-      .photo-1 { grid-column: 1 / 3; grid-row: 1 }
-      .photo-2 { grid-column: 3 / 4; grid-row: 1 }
-      .photo-3 { grid-column: 1 / 2; grid-row: 2 }
-      .photo-4 { grid-column: 4 / 5; grid-row: 1 / 3 }
-      .photo-5 { grid-column: 2 / 4; grid-row: 2 }
-      .photo-6 { grid-column: 1 / 5; grid-row: 3 }
-      .photo-6 img { object-position: center top }
-      .photo-8 { grid-column: 1 / 4; grid-row: 4 }
-      .photo-9 { grid-column: 4 / 5; grid-row: 4 / 6 }
-      .photo-10 { grid-column: 1 / 2; grid-row: 5 }
-      .photo-11 { grid-column: 2 / 4; grid-row: 5 }
-      .photo-9 img { object-position: center top }
-      .photo-11 img { object-position: center top }
-      .photo-12 { grid-column: 1 / 3; grid-row: 6 }
-      .photo-13 { grid-column: 3 / 5; grid-row: 6 }
-      .photo-13 img { object-position: center top }
-      .photo-14 { grid-column: 1 / 4; grid-row: 7 }
-      .photo-15 { grid-column: 4 / 5; grid-row: 7 / 9 }
-      .photo-15 img { object-position: center top }
-      .photo-16 { grid-column: 1 / 2; grid-row: 8 }
-      .photo-17 { grid-column: 2 / 4; grid-row: 8 }
-      .photo-18 { grid-column: 1 / 5; grid-row: 9 }
-      .photo-18 img { object-position: center top }
-      .photo-19 { grid-column: 1 / 2; grid-row: 10 }
-      .photo-20 { grid-column: 2 / 4; grid-row: 10 }
-      .photo-21 { grid-column: 4 / 5; grid-row: 10 / 12 }
-      .photo-21 img { object-position: center top }
-      .photo-22 { grid-column: 1 / 2; grid-row: 11 }
-      .photo-23 { grid-column: 2 / 3; grid-row: 11 }
-      .photo-24 { grid-column: 3 / 4; grid-row: 11 }
+      .carousel-btn--prev { left: 16px }
+      .carousel-btn--next { right: 16px }
+
+      .carousel-btn[disabled] { opacity: 0; pointer-events: none }
+
+      /* ── Pagination dots ── */
+
+      .carousel-dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-top: 36px
+      }
+
+      .carousel-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--sand);
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        flex-shrink: 0;
+        transition: width 420ms cubic-bezier(0.25,0.46,0.45,0.94),
+                    border-radius 420ms cubic-bezier(0.25,0.46,0.45,0.94),
+                    background 420ms ease
+      }
+
+      .carousel-dot.is-active {
+        width: 24px;
+        border-radius: 3px;
+        background: var(--cocoa)
+      }
+
+      /* ── Lightbox ── */
+
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: rgba(17,11,8,0);
+        opacity: 0;
+        pointer-events: none;
+        transition: background 450ms ease, opacity 450ms ease;
+        -webkit-backdrop-filter: blur(0px);
+        backdrop-filter: blur(0px)
+      }
+
+      .lightbox.is-open {
+        background: rgba(17,11,8,0.90);
+        opacity: 1;
+        pointer-events: all;
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px)
+      }
+
+      .lightbox-inner {
+        position: relative;
+        max-width: min(90vw, 800px);
+        transform: scale(0.94) translateY(8px);
+        transition: transform 520ms cubic-bezier(0.25,0.46,0.45,0.94)
+      }
+
+      .lightbox.is-open .lightbox-inner { transform: scale(1) translateY(0) }
+
+      .lightbox-img {
+        width: 100%;
+        height: auto;
+        max-height: 78vh;
+        object-fit: contain;
+        border-radius: 12px;
+        display: block
+      }
+
+      .lightbox-caption {
+        padding: 18px 2px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 4px
+      }
+
+      .lightbox-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 18px;
+        font-weight: 500;
+        color: rgba(255,255,255,0.90);
+        letter-spacing: 0.02em
+      }
+
+      .lightbox-meta {
+        font-family: 'Inter', sans-serif;
+        font-size: 12px;
+        color: rgba(255,255,255,0.50);
+        letter-spacing: 0.06em
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: -52px;
+        right: 0;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.14);
+        color: rgba(255,255,255,0.75);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 300ms ease, color 300ms ease
+      }
+
+      .lightbox-close:hover { background: rgba(255,255,255,0.18); color: #fff }
+
+      /* ── Reduced motion ── */
+
+      @media (prefers-reduced-motion: reduce) {
+        .carousel-track, .carousel-slide, .carousel-figure,
+        .carousel-figure img, .carousel-caption, .carousel-btn,
+        .carousel-dot, .lightbox, .lightbox-inner {
+          transition-duration: 0ms !important;
+          animation: none !important
+        }
+      }
+
+      /* ── Mobile ── */
 
       @media (max-width: 768px) {
-        .gallery-grid {
-          grid-template-columns: 1fr;
-          grid-template-rows: auto;
-          gap: 4px
+        #gallery { padding: 80px 0 }
+
+        .carousel-track {
+          padding: 24px 20px;
+          margin: -24px 0;
+          gap: 12px
         }
 
-        .photo-1, .photo-2, .photo-3,
-        .photo-4, .photo-5, .photo-6,
-        .photo-8, .photo-9, .photo-10,
-        .photo-11, .photo-12, .photo-13,
-        .photo-14, .photo-15, .photo-16,
-        .photo-17, .photo-18, .photo-19,
-        .photo-20, .photo-21, .photo-22,
-        .photo-23, .photo-24 {
-          grid-column: 1 / -1;
-          grid-row: auto;
-          height: 260px
-        }
+        .carousel-slide { width: 260px }
+        .carousel-slide--wide { width: 320px }
+        .carousel-figure { height: 340px }
+        .carousel-btn { display: none }
 
-        .photo-4, .photo-8, .photo-9,
-        .photo-15, .photo-18, .photo-21 {
-          height: 360px
-        }
-
-        #section-indicator {
-          display: block
-        }
+        #section-indicator { display: block }
       }
 
       #section-indicator {
@@ -1526,128 +1740,306 @@
       </div>
     </section>
     <!-- GALLERY -->
-    <section id="gallery">
-      <div class="gallery-inner">
+    <section id="gallery" aria-label="Photo gallery">
+      <div class="gallery-header">
         <p class="section-label">In the room. In the field. In the community.</p>
         <h2 class="section-title">The ecosystem, lived.</h2>
-        <div class="gallery-grid">
+      </div>
 
-          <div class="photo-slot photo-1" data-caption="LegalTechTalk 2024 - At the Binderr stand">
-            <img src="LTT24.jpeg" alt="LegalTechTalk 2024 - At the Binderr stand">
-            <span class="photo-caption">LegalTechTalk 2024 - At the Binderr stand</span>
-          </div>
+      <div class="carousel" role="region" aria-label="Gallery" aria-roledescription="carousel">
 
-          <div class="photo-slot photo-2" data-caption="LegalTechTalk 2025 - Networking">
-            <img src="LTT25.jpeg" alt="LegalTechTalk 2025 - Networking">
-            <span class="photo-caption">LegalTechTalk 2025 - Networking</span>
-          </div>
+        <button class="carousel-btn carousel-btn--prev" aria-label="Previous photo">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4l-6 5 6 5"/></svg>
+        </button>
 
-          <div class="photo-slot photo-3" data-caption="The Lawyers Retreat 2025 - White Party, poolside">
-            <img src="TLR25.jpeg" alt="The Lawyers Retreat 2025 - White Party, poolside">
-            <span class="photo-caption">The Lawyers Retreat 2025 - White Party, poolside</span>
-          </div>
+        <div class="carousel-viewport" tabindex="0" aria-label="Use arrow keys to navigate">
+          <ul class="carousel-track" id="carousel-track" aria-live="polite">
 
-          <div class="photo-slot photo-4" data-caption="Working from Sri Lanka, 2026 - Poolside laptop">
-            <img src="SRILANKA2026.jpeg" alt="Working from Sri Lanka, 2026 - Poolside laptop">
-            <span class="photo-caption">Working from Sri Lanka, 2026 - Poolside laptop</span>
-          </div>
+            <li class="carousel-slide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="LTT24.jpeg" alt="SJ at the Binderr stand at LegalTechTalk 2024, networking in the legal tech space" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">LegalTechTalk 2024</span>
+                  <span class="caption-date">November 2024</span>
+                  <span class="caption-desc">At the Binderr stand — building connections in the legal tech space.</span>
+                  <span class="caption-location">ExCeL London</span>
+                </figcaption>
+              </figure>
+            </li>
 
-          <div class="photo-slot photo-5" data-caption="The Lawyers Retreat 2026 - Group hike, Ibiza">
-            <img src="TLR2026(1).jpeg" alt="The Lawyers Retreat 2026 - Group hike, Ibiza">
-            <span class="photo-caption">The Lawyers Retreat 2026 - Group hike, Ibiza</span>
-          </div>
+            <li class="carousel-slide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="LTT25.jpeg" alt="Networking at LegalTechTalk 2025 in London" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">LegalTechTalk 2025</span>
+                  <span class="caption-date">June 2025</span>
+                  <span class="caption-desc">Europe's leading legal tech conference. The conversations that matter happen here.</span>
+                  <span class="caption-location">ExCeL London</span>
+                </figcaption>
+              </figure>
+            </li>
 
-          <div class="photo-slot photo-6" data-caption="The Lawyers Retreat 2026 - Conversations in the sun">
-            <img src="TLR2026.jpeg" alt="The Lawyers Retreat 2026 - Conversations in the sun">
-            <span class="photo-caption">The Lawyers Retreat 2026 - Conversations in the sun</span>
-          </div>
+            <li class="carousel-slide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="TLR25.jpeg" alt="White Party poolside at The Lawyers Retreat 2025, Ibiza" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">The Lawyers Retreat 2025</span>
+                  <span class="caption-date">May 2025</span>
+                  <span class="caption-desc">White Party, poolside. The Ibiza sun did not disappoint.</span>
+                  <span class="caption-location">Ibiza</span>
+                </figcaption>
+              </figure>
+            </li>
 
-          <div class="photo-slot photo-8" data-caption="The Lawyers Retreat 2025 - White Party">
-            <img src="TLR2025WHITEPARTY.png" alt="The Lawyers Retreat 2025 - White Party">
-            <span class="photo-caption">The Lawyers Retreat 2025 - White Party</span>
-          </div>
+            <li class="carousel-slide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="SRILANKA2026.jpeg" alt="Working from poolside in Sri Lanka, February 2026" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">Working from Sri Lanka</span>
+                  <span class="caption-date">February 2026</span>
+                  <span class="caption-desc">Laptop by the pool. Strategy doesn't stop for sunshine.</span>
+                  <span class="caption-location">Sri Lanka</span>
+                </figcaption>
+              </figure>
+            </li>
 
-          <div class="photo-slot photo-9" data-caption="The Lawyers Retreat 2025 - Session">
-            <img src="TLR25session.png" alt="The Lawyers Retreat 2025 - Session">
-            <span class="photo-caption">The Lawyers Retreat 2025 - Session</span>
-          </div>
+            <li class="carousel-slide carousel-slide--wide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="TLR2026(1).jpeg" alt="Group hike in the Ibiza hills at The Lawyers Retreat 2026" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">The Lawyers Retreat 2026</span>
+                  <span class="caption-date">May 2026</span>
+                  <span class="caption-desc">Group hike in the hills. Work hard, move harder.</span>
+                  <span class="caption-location">Ibiza</span>
+                </figcaption>
+              </figure>
+            </li>
 
-          <div class="photo-slot photo-10" data-caption="The Lawyers Retreat 2025 - On the hike">
-            <img src="TLR25HIKE.png" alt="The Lawyers Retreat 2025 - On the hike">
-            <span class="photo-caption">The Lawyers Retreat 2025 - On the hike</span>
-          </div>
+            <li class="carousel-slide carousel-slide--wide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="TLR2026.jpeg" alt="Conversations in the sun at The Lawyers Retreat 2026, Ibiza" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">The Lawyers Retreat 2026</span>
+                  <span class="caption-date">May 2026</span>
+                  <span class="caption-desc">Conversations in the sun with the people who get it.</span>
+                  <span class="caption-location">Ibiza</span>
+                </figcaption>
+              </figure>
+            </li>
 
-          <div class="photo-slot photo-11" data-caption="The Lawyers Retreat 2025 - Conversations, Ibiza">
-            <img src="TLR2025(1).png" alt="The Lawyers Retreat 2025 - Conversations, Ibiza">
-            <span class="photo-caption">The Lawyers Retreat 2025 - Conversations, Ibiza</span>
-          </div>
+            <li class="carousel-slide carousel-slide--wide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="TLR2025WHITEPARTY.png" alt="The White Party night at The Lawyers Retreat 2025, Ibiza" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">The Lawyers Retreat 2025</span>
+                  <span class="caption-date">May 2025</span>
+                  <span class="caption-desc">White Party night. The community gathered, the dancing happened.</span>
+                  <span class="caption-location">Ibiza</span>
+                </figcaption>
+              </figure>
+            </li>
 
-          <div class="photo-slot photo-12" data-caption="The Lawyers Retreat 2025 - Strategy session">
-            <img src="TLR2025TACIT.png" alt="The Lawyers Retreat 2025 - Strategy session">
-            <span class="photo-caption">The Lawyers Retreat 2025 - Strategy session</span>
-          </div>
+            <li class="carousel-slide carousel-slide--wide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="TLR25session.png" alt="Strategy session at The Lawyers Retreat 2025, Ibiza" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">The Lawyers Retreat 2025</span>
+                  <span class="caption-date">May 2025</span>
+                  <span class="caption-desc">In the room where strategy and connection collide.</span>
+                  <span class="caption-location">Ibiza</span>
+                </figcaption>
+              </figure>
+            </li>
 
-          <div class="photo-slot photo-13" data-caption="The Lawyers Retreat 2025 - In conversation">
-            <img src="TLR2025(2).png" alt="The Lawyers Retreat 2025 - In conversation">
-            <span class="photo-caption">The Lawyers Retreat 2025 - In conversation</span>
-          </div>
+            <li class="carousel-slide carousel-slide--wide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="TLR25HIKE.png" alt="Hiking at The Lawyers Retreat 2025, Ibiza" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">The Lawyers Retreat 2025</span>
+                  <span class="caption-date">May 2025</span>
+                  <span class="caption-desc">On the hike. Altitude optional, community essential.</span>
+                  <span class="caption-location">Ibiza</span>
+                </figcaption>
+              </figure>
+            </li>
 
-          <div class="photo-slot photo-14" data-caption="London Bridge, LegalTechTalk 2026">
-            <img src="TowerBridgeSJ.png" alt="SJ on London Bridge with Tower Bridge in the background">
-            <span class="photo-caption">London Bridge, LegalTechTalk 2026</span>
-          </div>
+            <li class="carousel-slide carousel-slide--wide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="TLR2025(1).png" alt="Real conversations at The Lawyers Retreat 2025, Ibiza" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">The Lawyers Retreat 2025</span>
+                  <span class="caption-date">May 2025</span>
+                  <span class="caption-desc">Real conversations in real sunshine.</span>
+                  <span class="caption-location">Ibiza</span>
+                </figcaption>
+              </figure>
+            </li>
 
-          <div class="photo-slot photo-15" data-caption="City of London skyline, June 2026">
-            <img src="LondonSkylineSJ.png" alt="SJ photographing the City of London skyline">
-            <span class="photo-caption">City of London skyline, June 2026</span>
-          </div>
+            <li class="carousel-slide carousel-slide--wide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="TLR2025TACIT.png" alt="Strategy session with the Tacit Legal team at The Lawyers Retreat 2025" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">The Lawyers Retreat 2025</span>
+                  <span class="caption-date">May 2025</span>
+                  <span class="caption-desc">Strategy sessions with the Tacit Legal team.</span>
+                  <span class="caption-location">Ibiza</span>
+                </figcaption>
+              </figure>
+            </li>
 
-          <div class="photo-slot photo-16" data-caption="Peach at the O2, LegalTechTalk 2026">
-            <img src="PeachatO2.png" alt="Peach plush toy held up in front of the O2 Arena">
-            <span class="photo-caption">Peach at the O2, LegalTechTalk 2026</span>
-          </div>
+            <li class="carousel-slide carousel-slide--wide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="TLR2025(2).png" alt="In conversation at The Lawyers Retreat 2025, Ibiza" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">The Lawyers Retreat 2025</span>
+                  <span class="caption-date">May 2025</span>
+                  <span class="caption-desc">In conversation. Always.</span>
+                  <span class="caption-location">Ibiza</span>
+                </figcaption>
+              </figure>
+            </li>
 
-          <div class="photo-slot photo-17" data-caption="The Shard, Canary Wharf - LegalTechTalk 2026">
-            <img src="PeachTheShard.png" alt="SJ at The Shard, Canary Wharf, holding peach toy">
-            <span class="photo-caption">The Shard, Canary Wharf - LegalTechTalk 2026</span>
-          </div>
+            <li class="carousel-slide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="TowerBridgeSJ.png" alt="SJ on London Bridge with Tower Bridge and the Thames in the background" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">London Bridge</span>
+                  <span class="caption-date">June 2026</span>
+                  <span class="caption-desc">The city as a backdrop. LegalTechTalk week in full swing.</span>
+                  <span class="caption-location">London</span>
+                </figcaption>
+              </figure>
+            </li>
 
-          <div class="photo-slot photo-18" data-caption="LegalTechTalk 2026 - with Chris Williams &amp; the community">
-            <img src="ChrisWilliamsSJ.png" alt="SJ with Chris Williams and friend at LegalTechTalk 2026">
-            <span class="photo-caption">LegalTechTalk 2026 - with Chris Williams &amp; the community</span>
-          </div>
+            <li class="carousel-slide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="LondonSkylineSJ.png" alt="SJ photographing the City of London skyline from the Southbank, wearing the peach cap" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">City of London</span>
+                  <span class="caption-date">June 2026</span>
+                  <span class="caption-desc">The skyline, captured. The peach cap doing its job.</span>
+                  <span class="caption-location">Southbank, London</span>
+                </figcaption>
+              </figure>
+            </li>
 
-          <div class="photo-slot photo-19" data-caption="LegalTechTalk 2026 - with Gretchen, Lennon Legal">
-            <img src="GretchenLennonSJ.png" alt="SJ selfie with Gretchen from Lennon Legal at LegalTechTalk 2026">
-            <span class="photo-caption">LegalTechTalk 2026 - with Gretchen, Lennon Legal</span>
-          </div>
+            <li class="carousel-slide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="PeachatO2.png" alt="Peach plush toy held up proudly in front of the O2 Arena, Greenwich" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">Peach at the O2</span>
+                  <span class="caption-date">June 2026</span>
+                  <span class="caption-desc">LegalTechTalk week wouldn't be complete without the peach making an appearance.</span>
+                  <span class="caption-location">The O2, London</span>
+                </figcaption>
+              </figure>
+            </li>
 
-          <div class="photo-slot photo-20" data-caption="LegalTechTalk 2026 - outdoor drinks">
-            <img src="GretchenLennon(1)SJ.png" alt="SJ and Gretchen at LegalTechTalk 2026 outdoor area">
-            <span class="photo-caption">LegalTechTalk 2026 - outdoor drinks</span>
-          </div>
+            <li class="carousel-slide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="PeachTheShard.png" alt="SJ holding the peach toy up at The Shard, Canary Wharf" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">The Shard</span>
+                  <span class="caption-date">June 2026</span>
+                  <span class="caption-desc">The peach vs. the skyline. The peach wins.</span>
+                  <span class="caption-location">Canary Wharf, London</span>
+                </figcaption>
+              </figure>
+            </li>
 
-          <div class="photo-slot photo-21" data-caption="Legally Speaking Podcast, LegalTechTalk 2026">
-            <img src="RobHannaSJ.png" alt="SJ with Rob Hanna at the Legally Speaking Podcast stand">
-            <span class="photo-caption">Legally Speaking Podcast, LegalTechTalk 2026</span>
-          </div>
+            <li class="carousel-slide carousel-slide--wide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="ChrisWilliamsSJ.png" alt="SJ with Chris Williams and a friend at the LegalTechTalk 2026 backdrop" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">LegalTechTalk 2026</span>
+                  <span class="caption-date">June 2026</span>
+                  <span class="caption-desc">With Chris Williams and the community. These are the people.</span>
+                  <span class="caption-location">ExCeL London</span>
+                </figcaption>
+              </figure>
+            </li>
 
-          <div class="photo-slot photo-22" data-caption="LegalTechTalk 2026 - with Oscar Davies">
-            <img src="OscarDaviesSJ.png" alt="SJ with Oscar Davies at LegalTechTalk 2026">
-            <span class="photo-caption">LegalTechTalk 2026 - with Oscar Davies</span>
-          </div>
+            <li class="carousel-slide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="GretchenLennonSJ.png" alt="SJ selfie with Gretchen from Lennon Legal at LegalTechTalk 2026" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">LegalTechTalk 2026</span>
+                  <span class="caption-date">June 2026</span>
+                  <span class="caption-desc">With Gretchen from Lennon Legal. Good people, good vibes.</span>
+                  <span class="caption-location">ExCeL London</span>
+                </figcaption>
+              </figure>
+            </li>
 
-          <div class="photo-slot photo-23" data-caption="LegalTechTalk 2026 - with Jon Gregson">
-            <img src="JonGregsonSJ.png" alt="SJ with Jon Gregson at LegalTechTalk 2026">
-            <span class="photo-caption">LegalTechTalk 2026 - with Jon Gregson</span>
-          </div>
+            <li class="carousel-slide carousel-slide--wide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="GretchenLennon(1)SJ.png" alt="SJ and Gretchen from Lennon Legal enjoying drinks outside at LegalTechTalk 2026" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">LegalTechTalk 2026</span>
+                  <span class="caption-date">June 2026</span>
+                  <span class="caption-desc">Outdoor drinks with Gretchen. Legal tech meets sunshine.</span>
+                  <span class="caption-location">ExCeL London</span>
+                </figcaption>
+              </figure>
+            </li>
 
-          <div class="photo-slot photo-24" data-caption="LegalTechTalk 2026 - with Sophie Best">
-            <img src="SophieBestSJ.png" alt="SJ with Sophie Best at LegalTechTalk 2026">
-            <span class="photo-caption">LegalTechTalk 2026 - with Sophie Best</span>
-          </div>
+            <li class="carousel-slide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="RobHannaSJ.png" alt="SJ with Rob Hanna at the Legally Speaking Podcast stand at LegalTechTalk 2026" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">Legally Speaking Podcast</span>
+                  <span class="caption-date">June 2026</span>
+                  <span class="caption-desc">With Rob Hanna at the UK's number one law podcast.</span>
+                  <span class="caption-location">ExCeL London</span>
+                </figcaption>
+              </figure>
+            </li>
 
+            <li class="carousel-slide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="OscarDaviesSJ.png" alt="SJ with Oscar Davies at LegalTechTalk 2026" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">LegalTechTalk 2026</span>
+                  <span class="caption-date">June 2026</span>
+                  <span class="caption-desc">With Oscar Davies. The community keeps delivering.</span>
+                  <span class="caption-location">ExCeL London</span>
+                </figcaption>
+              </figure>
+            </li>
+
+            <li class="carousel-slide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="JonGregsonSJ.png" alt="SJ with Jon Gregson at LegalTechTalk 2026" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">LegalTechTalk 2026</span>
+                  <span class="caption-date">June 2026</span>
+                  <span class="caption-desc">With Jon Gregson. Always a pleasure.</span>
+                  <span class="caption-location">ExCeL London</span>
+                </figcaption>
+              </figure>
+            </li>
+
+            <li class="carousel-slide" role="listitem">
+              <figure class="carousel-figure">
+                <img src="SophieBestSJ.png" alt="SJ with Sophie Best at LegalTechTalk 2026" loading="lazy">
+                <figcaption class="carousel-caption" aria-hidden="true">
+                  <span class="caption-title">LegalTechTalk 2026</span>
+                  <span class="caption-date">June 2026</span>
+                  <span class="caption-desc">With Sophie Best. The best kind of unexpected run-in.</span>
+                  <span class="caption-location">ExCeL London</span>
+                </figcaption>
+              </figure>
+            </li>
+
+          </ul>
         </div>
+
+        <button class="carousel-btn carousel-btn--next" aria-label="Next photo">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4l6 5-6 5"/></svg>
+        </button>
+
+        <div class="carousel-dots" role="tablist" aria-label="Gallery navigation"></div>
+
       </div>
     </section>
     <!-- SHOP -->
@@ -1702,6 +2094,20 @@
         <span class="footer-copy">© 2026 SJ Does · sjdoes.com</span>
       </div>
     </footer>
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" aria-hidden="true">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" id="lightbox-close" aria-label="Close image viewer">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M2 2l12 12M14 2L2 14"/></svg>
+      </button>
+      <img class="lightbox-img" id="lightbox-img" src="" alt="">
+      <div class="lightbox-caption">
+        <span class="lightbox-title" id="lightbox-title"></span>
+        <span class="lightbox-meta"  id="lightbox-meta"></span>
+      </div>
+    </div>
+  </div>
+
   <div id="section-indicator" aria-hidden="true"></div>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script>lucide.createIcons();</script>
@@ -1755,6 +2161,345 @@
       window.addEventListener('scroll', update, { passive: true });
       update();
     })();
+  </script>
+  <script>
+  /* ═══════════════════════════════════════════════════════════════════
+     SJ DOES — Premium Gallery Carousel
+     Vanilla JS · No dependencies · Modular · Accessible
+     ═══════════════════════════════════════════════════════════════════ */
+  (function () {
+    'use strict';
+
+    /* ── Utils ─────────────────────────────────────────────────────── */
+
+    const EASE = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+
+    const prefersReducedMotion = () =>
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* True when the primary input is touch (phones/tablets) */
+    const isTouchPrimary = () =>
+      window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+    /* ── Carousel ──────────────────────────────────────────────────── */
+
+    class Carousel {
+      constructor (el) {
+        this.el       = el;
+        this.viewport = el.querySelector('.carousel-viewport');
+        this.track    = el.querySelector('.carousel-track');
+        this.slides   = [...el.querySelectorAll('.carousel-slide')];
+        this.btnPrev  = el.querySelector('.carousel-btn--prev');
+        this.btnNext  = el.querySelector('.carousel-btn--next');
+        this.dotsWrap = el.querySelector('.carousel-dots');
+
+        this.index          = 0;
+        this.offset         = 0;
+        this.dragging       = false;
+        this.dragStartX     = 0;
+        this.dragStartOffset = 0;
+        this.touchStartX    = 0;
+        this.touchStartY    = 0;
+        this.isHSwipe       = null;
+
+        this._init();
+      }
+
+      _init () {
+        this._buildDots();
+        this._bindArrows();
+        this._bindKeyboard();
+        this._bindDrag();
+        this._bindTouch();
+        this._snapTo(0, false);
+      }
+
+      /* ── Dots ────────────────────────────────────────────────────── */
+
+      _buildDots () {
+        this.slides.forEach((_, i) => {
+          const btn = document.createElement('button');
+          btn.className = 'carousel-dot';
+          btn.setAttribute('role', 'tab');
+          btn.setAttribute('aria-label', `Slide ${i + 1} of ${this.slides.length}`);
+          btn.addEventListener('click', () => this._snapTo(i));
+          this.dotsWrap.appendChild(btn);
+        });
+        this.dots = [...this.dotsWrap.querySelectorAll('.carousel-dot')];
+      }
+
+      /* ── Snap ────────────────────────────────────────────────────── */
+
+      _getSlideLeft (i) {
+        const trackPad = parseFloat(getComputedStyle(this.track).paddingLeft) || 60;
+        return this.slides[i].offsetLeft - trackPad;
+      }
+
+      _snapTo (i, animate = true) {
+        this.index  = Math.max(0, Math.min(i, this.slides.length - 1));
+        this.offset = this._getSlideLeft(this.index);
+        const dur   = (animate && !prefersReducedMotion()) ? '600ms' : '0ms';
+        this.track.style.transition = `transform ${dur} ${EASE}`;
+        this.track.style.transform  = `translateX(${-this.offset}px)`;
+        this._updateUI();
+      }
+
+      _updateUI () {
+        this.dots.forEach((dot, i) => {
+          dot.classList.toggle('is-active', i === this.index);
+          dot.setAttribute('aria-selected', String(i === this.index));
+        });
+        if (this.btnPrev) this.btnPrev.disabled = this.index === 0;
+        if (this.btnNext) this.btnNext.disabled = this.index === this.slides.length - 1;
+      }
+
+      /* ── Arrow buttons ───────────────────────────────────────────── */
+
+      _bindArrows () {
+        this.btnPrev?.addEventListener('click', () => this._snapTo(this.index - 1));
+        this.btnNext?.addEventListener('click', () => this._snapTo(this.index + 1));
+      }
+
+      /* ── Keyboard ────────────────────────────────────────────────── */
+
+      _bindKeyboard () {
+        this.viewport.addEventListener('keydown', e => {
+          if (e.key === 'ArrowLeft')  { e.preventDefault(); this._snapTo(this.index - 1); }
+          if (e.key === 'ArrowRight') { e.preventDefault(); this._snapTo(this.index + 1); }
+          if (e.key === 'Home')       { e.preventDefault(); this._snapTo(0); }
+          if (e.key === 'End')        { e.preventDefault(); this._snapTo(this.slides.length - 1); }
+        });
+      }
+
+      /* ── Mouse drag ──────────────────────────────────────────────── */
+
+      _bindDrag () {
+        this.viewport.addEventListener('mousedown', e => {
+          if (e.button !== 0) return;
+          this.dragging        = true;
+          this.dragStartX      = e.clientX;
+          this.dragStartOffset = this.offset;
+          this.track.style.transition = 'none';
+          this.viewport.style.cursor  = 'grabbing';
+          e.preventDefault();
+        });
+
+        window.addEventListener('mousemove', e => {
+          if (!this.dragging) return;
+          const delta = e.clientX - this.dragStartX;
+          this.track.style.transform = `translateX(${-(this.dragStartOffset - delta)}px)`;
+        });
+
+        window.addEventListener('mouseup', e => {
+          if (!this.dragging) return;
+          this.dragging = false;
+          this.viewport.style.cursor = 'grab';
+          const delta = e.clientX - this.dragStartX;
+          this._snapTo(Math.abs(delta) > 60
+            ? (delta > 0 ? this.index - 1 : this.index + 1)
+            : this.index);
+        });
+
+        /* Prevent a click firing after a drag */
+        this.viewport.addEventListener('click', e => {
+          if (Math.abs((this.dragStartX || 0) - (e.clientX || 0)) > 6) e.preventDefault();
+        }, true);
+      }
+
+      /* ── Touch / swipe ───────────────────────────────────────────── */
+
+      _bindTouch () {
+        this.viewport.addEventListener('touchstart', e => {
+          this.touchStartX     = e.touches[0].clientX;
+          this.touchStartY     = e.touches[0].clientY;
+          this.dragStartOffset = this.offset;
+          this.isHSwipe        = null;
+          this.track.style.transition = 'none';
+        }, { passive: true });
+
+        this.viewport.addEventListener('touchmove', e => {
+          const dx = e.touches[0].clientX - this.touchStartX;
+          const dy = e.touches[0].clientY - this.touchStartY;
+          if (this.isHSwipe === null) this.isHSwipe = Math.abs(dx) > Math.abs(dy);
+          if (!this.isHSwipe) return;
+          e.preventDefault();
+          this.track.style.transform = `translateX(${-(this.dragStartOffset - dx)}px)`;
+        }, { passive: false });
+
+        this.viewport.addEventListener('touchend', e => {
+          const dx = e.changedTouches[0].clientX - this.touchStartX;
+          this._snapTo(this.isHSwipe && Math.abs(dx) > 44
+            ? (dx > 0 ? this.index - 1 : this.index + 1)
+            : this.index);
+        }, { passive: true });
+      }
+    }
+
+    /* ── Hover Effects ─────────────────────────────────────────────── */
+
+    class HoverFX {
+      constructor (carousel) {
+        this.slides = carousel.slides;
+        this.active = null;
+        if (!isTouchPrimary()) this._bind();
+      }
+
+      _bind () {
+        this.slides.forEach(slide => {
+          slide.addEventListener('mouseenter', () => this._focus(slide));
+          slide.addEventListener('mouseleave', () => this._blur());
+          slide.addEventListener('mousemove',  e  => this._parallax(slide, e));
+        });
+      }
+
+      _focus (target) {
+        this.active = target;
+        this.slides.forEach(s => {
+          s.classList.toggle('is-hovered', s === target);
+          s.classList.toggle('is-dimmed',  s !== target);
+        });
+      }
+
+      _blur () {
+        this.active = null;
+        this.slides.forEach(s => {
+          s.classList.remove('is-hovered', 'is-dimmed');
+          const fig = s.querySelector('.carousel-figure');
+          if (fig) fig.style.transform = '';
+        });
+      }
+
+      /* Subtle tilt parallax — max ±2.5° */
+      _parallax (slide, e) {
+        if (prefersReducedMotion()) return;
+        const fig  = slide.querySelector('.carousel-figure');
+        if (!fig)  return;
+        const rect = slide.getBoundingClientRect();
+        const ry   =  ((e.clientX - (rect.left + rect.width  / 2)) / (rect.width  / 2)) * 2.5;
+        const rx   = -((e.clientY - (rect.top  + rect.height / 2)) / (rect.height / 2)) * 2.5;
+        fig.style.transform = `scale(1.07) perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      }
+    }
+
+    /* ── Tap handler (mobile: caption on tap, lightbox on second tap) */
+
+    class TapFX {
+      constructor (carousel, lightbox) {
+        this.carousel = carousel;
+        this.lightbox = lightbox;
+        this.last     = null;
+        this.timer    = null;
+        if (isTouchPrimary()) this._bind();
+      }
+
+      _bind () {
+        this.carousel.slides.forEach(slide => {
+          slide.addEventListener('click', () => this._handle(slide));
+        });
+      }
+
+      _handle (slide) {
+        if (slide === this.last) {
+          clearTimeout(this.timer);
+          slide.classList.remove('is-tapped');
+          this.last = null;
+          this.lightbox.open(slide);
+        } else {
+          if (this.last) this.last.classList.remove('is-tapped');
+          this.last = slide;
+          slide.classList.add('is-tapped');
+          clearTimeout(this.timer);
+          this.timer = setTimeout(() => {
+            slide.classList.remove('is-tapped');
+            this.last = null;
+          }, 3000);
+        }
+      }
+    }
+
+    /* ── Lightbox ──────────────────────────────────────────────────── */
+
+    class Lightbox {
+      constructor () {
+        this.el    = document.getElementById('lightbox');
+        this.img   = document.getElementById('lightbox-img');
+        this.title = document.getElementById('lightbox-title');
+        this.meta  = document.getElementById('lightbox-meta');
+        this.close = document.getElementById('lightbox-close');
+        this._prev = null;
+        this._bind();
+      }
+
+      _bind () {
+        this.close.addEventListener('click', () => this.shut());
+        this.el.addEventListener('click', e => { if (e.target === this.el) this.shut(); });
+        document.addEventListener('keydown', e => {
+          if (e.key === 'Escape' && this.el.classList.contains('is-open')) this.shut();
+        });
+      }
+
+      open (slide) {
+        const img     = slide.querySelector('img');
+        const cap     = slide.querySelector('.carousel-caption');
+        const titleEl = cap?.querySelector('.caption-title');
+        const dateEl  = cap?.querySelector('.caption-date');
+        const locEl   = cap?.querySelector('.caption-location');
+
+        this.img.src             = img.src;
+        this.img.alt             = img.alt;
+        this.title.textContent   = titleEl?.textContent ?? '';
+        this.meta.textContent    = [dateEl?.textContent, locEl?.textContent].filter(Boolean).join(' · ');
+
+        this._prev = document.activeElement;
+        this.el.classList.add('is-open');
+        this.el.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        this.close.focus();
+      }
+
+      shut () {
+        this.el.classList.remove('is-open');
+        this.el.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        this._prev?.focus();
+      }
+    }
+
+    /* ── Desktop: click figure → lightbox ─────────────────────────── */
+
+    class DesktopClick {
+      constructor (carousel, lightbox) {
+        if (isTouchPrimary()) return;
+        carousel.slides.forEach(slide => {
+          const fig  = slide.querySelector('.carousel-figure');
+          const name = slide.querySelector('.caption-title')?.textContent ?? 'photo';
+          fig.setAttribute('tabindex',   '0');
+          fig.setAttribute('role',       'button');
+          fig.setAttribute('aria-label', `View: ${name}`);
+          fig.addEventListener('click',   () => lightbox.open(slide));
+          fig.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); lightbox.open(slide); }
+          });
+        });
+      }
+    }
+
+    /* ── Boot ──────────────────────────────────────────────────────── */
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const carouselEl = document.querySelector('.carousel');
+      if (!carouselEl) return;
+
+      const carousel = new Carousel(carouselEl);
+      const lightbox = new Lightbox();
+      /* eslint-disable no-unused-vars */
+      const hoverFX  = new HoverFX(carousel);
+      const tapFX    = new TapFX(carousel, lightbox);
+      const clickFX  = new DesktopClick(carousel, lightbox);
+      /* eslint-enable */
+    });
+
+  }());
   </script>
   </body>
 </html>
