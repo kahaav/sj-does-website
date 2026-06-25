@@ -1072,7 +1072,7 @@
       .gallery-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: 280px 280px 480px 280px 280px 400px;
+        grid-template-rows: 280px 280px 480px 280px 280px 400px 280px 280px 480px 280px 280px;
         gap: 8px;
         margin-top: 60px
       }
@@ -1147,6 +1147,20 @@
       .photo-12 { grid-column: 1 / 3; grid-row: 6 }
       .photo-13 { grid-column: 3 / 5; grid-row: 6 }
       .photo-13 img { object-position: center top }
+      .photo-14 { grid-column: 1 / 4; grid-row: 7 }
+      .photo-15 { grid-column: 4 / 5; grid-row: 7 / 9 }
+      .photo-15 img { object-position: center top }
+      .photo-16 { grid-column: 1 / 2; grid-row: 8 }
+      .photo-17 { grid-column: 2 / 4; grid-row: 8 }
+      .photo-18 { grid-column: 1 / 5; grid-row: 9 }
+      .photo-18 img { object-position: center top }
+      .photo-19 { grid-column: 1 / 2; grid-row: 10 }
+      .photo-20 { grid-column: 2 / 4; grid-row: 10 }
+      .photo-21 { grid-column: 4 / 5; grid-row: 10 / 12 }
+      .photo-21 img { object-position: center top }
+      .photo-22 { grid-column: 1 / 2; grid-row: 11 }
+      .photo-23 { grid-column: 2 / 3; grid-row: 11 }
+      .photo-24 { grid-column: 3 / 4; grid-row: 11 }
 
       @media (max-width: 768px) {
         .gallery-grid {
@@ -1158,13 +1172,18 @@
         .photo-1, .photo-2, .photo-3,
         .photo-4, .photo-5, .photo-6,
         .photo-8, .photo-9, .photo-10,
-        .photo-11, .photo-12, .photo-13 {
+        .photo-11, .photo-12, .photo-13,
+        .photo-14, .photo-15, .photo-16,
+        .photo-17, .photo-18, .photo-19,
+        .photo-20, .photo-21, .photo-22,
+        .photo-23, .photo-24 {
           grid-column: 1 / -1;
           grid-row: auto;
           height: 260px
         }
 
-        .photo-4, .photo-8, .photo-9 {
+        .photo-4, .photo-8, .photo-9,
+        .photo-15, .photo-18, .photo-21 {
           height: 360px
         }
 
@@ -1571,6 +1590,61 @@
           <div class="photo-slot photo-13" data-caption="The Lawyers Retreat 2025 - In conversation">
             <img src="TLR2025(2).png" alt="The Lawyers Retreat 2025 - In conversation">
             <span class="photo-caption">The Lawyers Retreat 2025 - In conversation</span>
+          </div>
+
+          <div class="photo-slot photo-14" data-caption="London Bridge, LegalTechTalk 2026">
+            <img src="TowerBridgeSJ.png" alt="SJ on London Bridge with Tower Bridge in the background">
+            <span class="photo-caption">London Bridge, LegalTechTalk 2026</span>
+          </div>
+
+          <div class="photo-slot photo-15" data-caption="City of London skyline, June 2026">
+            <img src="LondonSkylineSJ.png" alt="SJ photographing the City of London skyline">
+            <span class="photo-caption">City of London skyline, June 2026</span>
+          </div>
+
+          <div class="photo-slot photo-16" data-caption="Peach at the O2, LegalTechTalk 2026">
+            <img src="PeachatO2.png" alt="Peach plush toy held up in front of the O2 Arena">
+            <span class="photo-caption">Peach at the O2, LegalTechTalk 2026</span>
+          </div>
+
+          <div class="photo-slot photo-17" data-caption="The Shard, Canary Wharf - LegalTechTalk 2026">
+            <img src="PeachTheShard.png" alt="SJ at The Shard, Canary Wharf, holding peach toy">
+            <span class="photo-caption">The Shard, Canary Wharf - LegalTechTalk 2026</span>
+          </div>
+
+          <div class="photo-slot photo-18" data-caption="LegalTechTalk 2026 - with Chris Williams &amp; the community">
+            <img src="ChrisWilliamsSJ.png" alt="SJ with Chris Williams and friend at LegalTechTalk 2026">
+            <span class="photo-caption">LegalTechTalk 2026 - with Chris Williams &amp; the community</span>
+          </div>
+
+          <div class="photo-slot photo-19" data-caption="LegalTechTalk 2026 - with Gretchen, Lennon Legal">
+            <img src="GretchenLennonSJ.png" alt="SJ selfie with Gretchen from Lennon Legal at LegalTechTalk 2026">
+            <span class="photo-caption">LegalTechTalk 2026 - with Gretchen, Lennon Legal</span>
+          </div>
+
+          <div class="photo-slot photo-20" data-caption="LegalTechTalk 2026 - outdoor drinks">
+            <img src="GretchenLennon(1)SJ.png" alt="SJ and Gretchen at LegalTechTalk 2026 outdoor area">
+            <span class="photo-caption">LegalTechTalk 2026 - outdoor drinks</span>
+          </div>
+
+          <div class="photo-slot photo-21" data-caption="Legally Speaking Podcast, LegalTechTalk 2026">
+            <img src="RobHannaSJ.png" alt="SJ with Rob Hanna at the Legally Speaking Podcast stand">
+            <span class="photo-caption">Legally Speaking Podcast, LegalTechTalk 2026</span>
+          </div>
+
+          <div class="photo-slot photo-22" data-caption="LegalTechTalk 2026 - with Oscar Davies">
+            <img src="OscarDaviesSJ.png" alt="SJ with Oscar Davies at LegalTechTalk 2026">
+            <span class="photo-caption">LegalTechTalk 2026 - with Oscar Davies</span>
+          </div>
+
+          <div class="photo-slot photo-23" data-caption="LegalTechTalk 2026 - with Jon Gregson">
+            <img src="JonGregsonSJ.png" alt="SJ with Jon Gregson at LegalTechTalk 2026">
+            <span class="photo-caption">LegalTechTalk 2026 - with Jon Gregson</span>
+          </div>
+
+          <div class="photo-slot photo-24" data-caption="LegalTechTalk 2026 - with Sophie Best">
+            <img src="SophieBestSJ.png" alt="SJ with Sophie Best at LegalTechTalk 2026">
+            <span class="photo-caption">LegalTechTalk 2026 - with Sophie Best</span>
           </div>
 
         </div>
