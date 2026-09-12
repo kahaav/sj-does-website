@@ -6,7 +6,7 @@
     <meta name="description" content="Founded by Suzanne Jeffers, solicitor (non-practising), SJ DOES helps ambitious professionals, law firms and legal tech companies grow, adapt, connect and create opportunities.">
     <title>SJ DOES | Law, Legal Tech, Growth &amp; Community</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
       * {
         margin: 0;
@@ -90,6 +90,7 @@
       }
 
       .nav-tagline {
+        font-family: 'Poppins', sans-serif;
         font-size: 10px;
         letter-spacing: 0.18em;
         text-transform: uppercase;
@@ -194,15 +195,39 @@
 
       /* HERO */
       #hero {
+        position: relative;
         min-height: 100vh;
         display: flex;
         align-items: center;
         background: var(--cream);
         padding-top: 120px;
-        padding-bottom: 80px
+        padding-bottom: 80px;
+        overflow: hidden
+      }
+
+      #vanta-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none
+      }
+
+      #hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(100deg,
+          rgba(246, 241, 235, 0.83) 0%,
+          rgba(246, 241, 235, 0.62) 34%,
+          rgba(246, 241, 235, 0.18) 70%,
+          rgba(246, 241, 235, 0) 100%);
+        z-index: 0;
+        pointer-events: none
       }
 
       .hero-inner {
+        position: relative;
+        z-index: 1;
         max-width: 1100px;
         margin: 0 auto;
         width: 100%;
@@ -235,6 +260,7 @@
       }
 
       .hero-sub {
+        font-family: 'Poppins', sans-serif;
         font-size: clamp(14px, 2vw, 16px);
         font-weight: 300;
         color: var(--cocoa);
@@ -277,6 +303,7 @@
         padding: 14px 0;
         width: 200px;
         text-align: center;
+        font-family: 'Poppins', sans-serif;
         font-size: 13px;
         letter-spacing: 0.1em;
         text-decoration: none;
@@ -331,6 +358,7 @@
       }
 
       .section-intro {
+        font-family: 'Poppins', sans-serif;
         font-size: 15px;
         color: var(--cocoa);
         opacity: 0.65;
@@ -385,6 +413,7 @@
       }
 
       .service-desc {
+        font-family: 'Poppins', sans-serif;
         font-size: 14px;
         color: var(--cocoa);
         opacity: 0.65;
@@ -557,6 +586,7 @@
       }
 
       .values-list li {
+        font-family: 'Poppins', sans-serif;
         padding: 18px 0;
         border-bottom: 1px solid var(--sand);
         display: flex;
@@ -683,6 +713,7 @@
       }
 
       .about-content p {
+        font-family: 'Poppins', sans-serif;
         font-size: 14px;
         color: rgba(255, 255, 255, 0.6);
         line-height: 1.9;
@@ -829,6 +860,7 @@
       }
 
       .contact-sub {
+        font-family: 'Poppins', sans-serif;
         font-size: 15px;
         color: var(--cocoa);
         opacity: 0.6;
@@ -876,6 +908,7 @@
       }
 
       .footer-tagline {
+        font-family: 'Poppins', sans-serif;
         font-size: 12px;
         letter-spacing: 0.1em;
         color: var(--cocoa);
@@ -1463,6 +1496,7 @@
     </nav>
     <!-- HERO -->
     <section id="hero">
+      <div id="vanta-bg" aria-hidden="true"></div>
       <div class="hero-inner">
         <div class="hero-content">
           <h1 class="hero-main">Serving law firms, in-house counsel and the businesses that serve legal.</h1>
@@ -2109,8 +2143,30 @@
   </div>
 
   <div id="section-indicator" aria-hidden="true"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.fog.min.js"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-  <script>lucide.createIcons();</script>
+  <script>
+    lucide.createIcons();
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      VANTA.FOG({
+        el: '#vanta-bg',
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        highlightColor: 0xffd9c2,
+        midtoneColor: 0xf4a888,
+        lowlightColor: 0x8c5a3c,
+        baseColor: 0xf6f1eb,
+        blurFactor: 0.60,
+        zoom: 1.00,
+        speed: 2.00
+      });
+    }
+  </script>
   <script>
     (function () {
       var hamburger = document.querySelector('.hamburger');
