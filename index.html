@@ -1106,6 +1106,189 @@
         margin: 0 auto
       }
 
+      /* RESOURCES */
+      #resources {
+        background: var(--cream)
+      }
+
+      .resources-inner {
+        max-width: 1100px;
+        margin: 0 auto
+      }
+
+      .resource-carousel {
+        margin-top: 32px
+      }
+
+      .resource-controls {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-bottom: 12px
+      }
+
+      .resource-control {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--cocoa);
+        background: var(--white);
+        border: 1px solid var(--sand);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s, opacity 0.2s
+      }
+
+      .resource-control:hover:not(:disabled) {
+        color: var(--white);
+        background: var(--cocoa)
+      }
+
+      .resource-control:focus-visible,
+      .resource-download:focus-visible,
+      .resource-form input:focus-visible {
+        outline: 3px solid var(--peach);
+        outline-offset: 3px
+      }
+
+      .resource-control:disabled {
+        opacity: 0.35;
+        cursor: default
+      }
+
+      .resource-track {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        padding: 4px 4px 22px;
+        list-style: none;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch
+      }
+
+      .resource-track::-webkit-scrollbar {
+        display: none
+      }
+
+      .resource-slide {
+        flex: 0 0 min(440px, 82vw);
+        min-height: 390px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 32px;
+        background: var(--white);
+        border: 1px solid var(--sand);
+        scroll-snap-align: start
+      }
+
+      .resource-type {
+        margin-bottom: 20px;
+        color: var(--peach);
+        font-family: 'Poppins', sans-serif;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase
+      }
+
+      .resource-title {
+        margin-bottom: 12px;
+        color: var(--cocoa);
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 28px;
+        font-weight: 500;
+        line-height: 1.2
+      }
+
+      .resource-teaser {
+        margin-bottom: 12px;
+        color: var(--cocoa);
+        font-family: 'Poppins', sans-serif;
+        font-size: 13px;
+        line-height: 1.7;
+        opacity: 0.75
+      }
+
+      .resource-meta {
+        margin-bottom: 18px;
+        color: var(--cocoa);
+        font-family: 'Poppins', sans-serif;
+        font-size: 12px;
+        opacity: 0.6
+      }
+
+      .resource-form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        margin-top: auto
+      }
+
+      .resource-form label {
+        color: var(--cocoa);
+        font-family: 'Poppins', sans-serif;
+        font-size: 12px;
+        font-weight: 500
+      }
+
+      .resource-form input[type="email"] {
+        width: 100%;
+        padding: 11px 12px;
+        border: 1px solid var(--sand);
+        border-radius: 0;
+        color: var(--cocoa);
+        background: var(--white);
+        font: 13px 'Poppins', sans-serif
+      }
+
+      .resource-download {
+        display: inline-block;
+        margin-top: 4px;
+        padding: 11px 18px;
+        color: var(--white);
+        background: var(--cocoa);
+        border: 0;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: background 0.2s
+      }
+
+      .resource-download:hover {
+        background: var(--peach)
+      }
+
+      .resource-privacy {
+        color: var(--cocoa);
+        font-family: 'Poppins', sans-serif;
+        font-size: 10px;
+        line-height: 1.6;
+        opacity: 0.65
+      }
+
+      .resource-privacy a {
+        color: inherit;
+        text-underline-offset: 2px
+      }
+
+      .resource-request-status {
+        margin-top: 28px;
+        padding: 16px 20px;
+        color: var(--cocoa);
+        background: var(--peach-light);
+        border-left: 3px solid var(--peach);
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px
+      }
+
       /* ── Carousel shell ── */
 
       .carousel {
@@ -1476,6 +1659,7 @@
           <li><a href="#clients">Clients</a></li>
           <li><a href="#testimonials">Testimonials</a></li>
           <li><a href="#about">About</a></li>
+          <li><a href="#resources">Resources</a></li>
           <li><a href="#shop">Shop</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -1490,6 +1674,7 @@
         <a href="#clients">Clients</a>
         <a href="#testimonials">Testimonials</a>
         <a href="#about">About</a>
+        <a href="#resources">Resources</a>
         <a href="#shop">Shop</a>
         <a href="#contact">Contact</a>
       </div>
@@ -1523,6 +1708,7 @@
         <a href="#clients">Clients</a>
         <a href="#testimonials">Testimonials</a>
         <a href="#about">About</a>
+        <a href="#resources">Resources</a>
         <a href="#contact">Contact</a>
       </div>
     </nav>
@@ -2076,6 +2262,72 @@
 
       </div>
     </section>
+    <!-- RESOURCES -->
+    <section id="resources">
+      <div class="resources-inner">
+        <p class="section-label">Insights &amp; resources</p>
+        <h2 class="section-title">Ideas worth sharing.</h2>
+        <p class="section-intro">Browse a preview, then enter your email to request a copy. SJ will email each PDF manually and delete the request record within 90 days after sending it. Your address won't be added to a marketing list. Formspree may retain its own copies under its privacy policy.</p>
+
+        <div class="resource-carousel" role="region" aria-label="Downloadable resources" aria-roledescription="carousel">
+          <div class="resource-controls">
+            <button class="resource-control resource-control--prev" type="button" aria-label="Previous resource">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4l-6 5 6 5"/></svg>
+            </button>
+            <button class="resource-control resource-control--next" type="button" aria-label="Next resource">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4l6 5-6 5"/></svg>
+            </button>
+          </div>
+          <ul class="resource-track" tabindex="0" aria-label="Use arrow keys to browse downloadable resources">
+            <li class="resource-slide">
+              <p class="resource-type">AI &amp; regulation</p>
+              <h3 class="resource-title">AI Regulation</h3>
+              <p class="resource-teaser">A 2026 overview of how seven jurisdictions are approaching AI rules, with practical questions for legal and business teams.</p>
+              <p class="resource-meta">PDF · 10 pages</p>
+              <form class="resource-form" action="https://formspree.io/f/mlgkgqbv" method="POST">
+                <input type="hidden" name="_subject" value="PDF request: AI Regulation">
+                <input type="hidden" name="_next" value="https://sjdoes.com/?resource-request=received#resources">
+                <input type="hidden" name="resource" value="AI Regulation">
+                <label for="resource-email-ai-regulation">Email address</label>
+                <input id="resource-email-ai-regulation" type="email" name="email" autocomplete="email" required>
+                <button class="resource-download" type="submit">Request PDF</button>
+                <p class="resource-privacy">SJ uses your address only to fulfil this request, not for marketing. Our record is deleted within 90 days; Formspree may retain its own copies. <a href="privacy-notice.html">Privacy notice</a></p>
+              </form>
+            </li>
+            <li class="resource-slide">
+              <p class="resource-type">AI &amp; technology</p>
+              <h3 class="resource-title">The State of AI 2026</h3>
+              <p class="resource-teaser">Six findings from McKinsey's 2026 survey—including the productivity-to-profit gap, AI costs, adoption and workplace impact.</p>
+              <p class="resource-meta">PDF · 8 pages</p>
+              <form class="resource-form" action="https://formspree.io/f/mlgkgqbv" method="POST">
+                <input type="hidden" name="_subject" value="PDF request: The State of AI 2026">
+                <input type="hidden" name="_next" value="https://sjdoes.com/?resource-request=received#resources">
+                <input type="hidden" name="resource" value="The State of AI 2026">
+                <label for="resource-email-state-of-ai">Email address</label>
+                <input id="resource-email-state-of-ai" type="email" name="email" autocomplete="email" required>
+                <button class="resource-download" type="submit">Request PDF</button>
+                <p class="resource-privacy">SJ uses your address only to fulfil this request, not for marketing. Our record is deleted within 90 days; Formspree may retain its own copies. <a href="privacy-notice.html">Privacy notice</a></p>
+              </form>
+            </li>
+            <li class="resource-slide">
+              <p class="resource-type">Legal tech investment</p>
+              <h3 class="resource-title">LegalTech Funding 2026</h3>
+              <p class="resource-teaser">A snapshot of 27 legal tech raises: where the $1.35bn in disclosed funding went, which categories drew investment, and who the buyers are.</p>
+              <p class="resource-meta">PDF · 8 pages</p>
+              <form class="resource-form" action="https://formspree.io/f/mlgkgqbv" method="POST">
+                <input type="hidden" name="_subject" value="PDF request: LegalTech Funding 2026">
+                <input type="hidden" name="_next" value="https://sjdoes.com/?resource-request=received#resources">
+                <input type="hidden" name="resource" value="LegalTech Funding 2026">
+                <label for="resource-email-legaltech-funding">Email address</label>
+                <input id="resource-email-legaltech-funding" type="email" name="email" autocomplete="email" required>
+                <button class="resource-download" type="submit">Request PDF</button>
+                <p class="resource-privacy">SJ uses your address only to fulfil this request, not for marketing. Our record is deleted within 90 days; Formspree may retain its own copies. <a href="privacy-notice.html">Privacy notice</a></p>
+              </form>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
     <!-- SHOP -->
     <section id="shop">
       <div class="shop-inner">
@@ -2165,6 +2417,54 @@
         zoom: 1.00,
         speed: 2.00
       });
+    }
+
+  </script>
+  <script>
+    const resourceTrack = document.querySelector('.resource-track');
+    if (resourceTrack) {
+      const resourcePrev = document.querySelector('.resource-control--prev');
+      const resourceNext = document.querySelector('.resource-control--next');
+      const resourceStep = () => {
+        const firstSlide = resourceTrack.querySelector('.resource-slide');
+        return firstSlide.getBoundingClientRect().width +
+          parseFloat(getComputedStyle(resourceTrack).columnGap);
+      };
+      const syncResourceControls = () => {
+        const maxScroll = resourceTrack.scrollWidth - resourceTrack.clientWidth;
+        resourcePrev.disabled = resourceTrack.scrollLeft <= 4;
+        resourceNext.disabled = resourceTrack.scrollLeft >= maxScroll - 4;
+      };
+      const moveResources = direction => {
+        resourceTrack.scrollBy({
+          left: direction * resourceStep(),
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+        });
+      };
+
+      resourcePrev.addEventListener('click', () => moveResources(-1));
+      resourceNext.addEventListener('click', () => moveResources(1));
+      resourceTrack.addEventListener('scroll', syncResourceControls, { passive: true });
+      resourceTrack.addEventListener('keydown', event => {
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          moveResources(-1);
+        }
+        if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          moveResources(1);
+        }
+      });
+      window.addEventListener('resize', syncResourceControls);
+      syncResourceControls();
+    }
+
+    if (new URLSearchParams(window.location.search).get('resource-request') === 'received') {
+      const status = document.createElement('p');
+      status.className = 'resource-request-status';
+      status.setAttribute('role', 'status');
+      status.textContent = 'Thanks — your request has been received. SJ will email your chosen PDF manually.';
+      document.querySelector('#resources .resources-inner').prepend(status);
     }
   </script>
   <script>
